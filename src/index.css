@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+    --color-base: #4b70f5;
+}
+
+.gradient-text {
+    @apply bg-gradient-to-r from-base via-base to-black text-transparent bg-clip-text;
+}
+
+body {
+    font-family: "Outfit", serif;
+}
+
+.hero {
+    background-image: url("/assets/images/hero-background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
