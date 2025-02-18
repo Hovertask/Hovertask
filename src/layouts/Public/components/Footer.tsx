@@ -4,12 +4,9 @@ import logo from "../../../assets/brand-logo.svg";
 
 const Footer = () => {
     return (
-        <footer className="bg-gradient-to-r from-base to-[#2C418F] text-gray-200 py-12">
-            {/* Main Content */}
+        <footer className="bg-gradient-to-b from-base to-[#2C418F] text-gray-200 py-12 pt-36 relative">
             <div className="container mx-auto px-6">
-                {/* Top Section with Logo, Links, and Install App */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-10 px-16">
-                    {/* Logo & About Section */}
                     <div className="md:col-span-4 flex flex-col items-center md:items-start">
                         <img src={logo} alt="Hovertask Logo" className="w-36 mb-4" />
                         <p className="text-sm leading-relaxed max-w-xs text-center md:text-left">
@@ -17,8 +14,6 @@ const Footer = () => {
                             businesses reach a wider audience.
                         </p>
                     </div>
-
-                    {/* Quick Links */}
                     <div className="md:col-span-3 text-center md:text-left">
                         <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
                         <ul className="space-y-2">
@@ -31,8 +26,6 @@ const Footer = () => {
                             ))}
                         </ul>
                     </div>
-
-                    {/* Useful Links */}
                     <div className="md:col-span-2 text-center md:text-left">
                         <h3 className="text-lg font-semibold text-white mb-4">Useful Links</h3>
                         <ul className="space-y-2">
@@ -45,8 +38,6 @@ const Footer = () => {
                             ))}
                         </ul>
                     </div>
-
-                    {/* Install App */}
                     <div className="md:col-span-3 flex flex-col items-center md:items-start">
                         <h3 className="text-lg font-semibold text-white mb-4">Install Our App</h3>
                         <div className="flex-col flex gap-4">
@@ -67,16 +58,11 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* Bottom Section with Social Media and Copyright */}
-                <div className="mt-12 pt-6 border-t border-gray-400">
+                <div className="mt-12 pt-6">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-12">
-                        {/* Copyright */}
                         <p className="text-sm">
-                            &copy; {new Date().getFullYear()} Hovertask. All rights reserved. Made by{" "}
-                            <span className="">Aloyzandra Nnawulezi</span>.
+                            &copy; {new Date().getFullYear()} Hovertask. All rights reserved. Made by Aloyande Nurudeen
                         </p>
-                        {/* Social Media Links */}
                         <div className="flex space-x-6 text-2xl">
                             <a href="#" className="hover:text-white transition">
                                 <FaFacebook />
