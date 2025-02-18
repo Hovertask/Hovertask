@@ -1,6 +1,4 @@
 import { PiNavigationArrow } from "react-icons/pi";
-import group from "../../../assets/Group 1000004576.png";
-import whatsapplogo from "../../../assets/whatsapp-removebg-preview.png";
 import { FaYoutube, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { CgMail } from "react-icons/cg";
 import { BiPhone } from "react-icons/bi";
@@ -19,7 +17,11 @@ const ContactUs = () => {
 
             {/* Background Image Section */}
             <div className="relative w-full max-w-4xl h-[20rem] rounded-2xl overflow-hidden transform rotate-[-2deg] mb-10 px-2">
-                <img src={group} alt="Contact Us" className="w-full h-full object-cover" />
+                <img
+                    src="/assets/images/Group 1000004576.png"
+                    alt="Contact Us"
+                    className="w-full h-full object-cover"
+                />
                 <div className="absolute inset-0 bg-opacity-50 flex items-center justify-center">
                     <p className="text-white text-center px-6 text-lg">
                         We'd love to hear from you! Whether you have questions, feedback, or need assistance, feel free
@@ -63,7 +65,11 @@ const Contact = () => {
                         </div>
 
                         <div className="flex items-center space-x-4">
-                            <img src={whatsapplogo} alt="WhatsApp" className="w-8 h-8 object-contain" />
+                            <img
+                                src="/assets/images/whatsapp-removebg-preview.png"
+                                alt="WhatsApp"
+                                className="w-8 h-8 object-contain"
+                            />
                             <div>
                                 <p className="font-semibold text-base">WhatsApp Support</p>
                                 <a href="#" className="text-blue-500 hover:underline">
