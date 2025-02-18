@@ -22,7 +22,7 @@ const SocialMediaAdvertSection = () => {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-[#DAE2FF4D] p-6 rounded-lg shadow-lg max-w-xs text-left transform rotate-[-5deg] mx-auto"
+                            className="bg-[#DAE2FF4D] p-6 rounded-lg shadow-lg max-w-xs text-left transition-transform rotate-[-5deg] hover:rotate-0 mx-auto"
                         >
                             <h3 className="text-lg font-semibold text-[20.28px]">{feature.title}</h3>
                             <p className="mt-2">{feature.description}</p>
