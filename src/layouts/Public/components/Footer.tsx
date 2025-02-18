@@ -4,18 +4,19 @@ import logo from "../../../assets/brand-logo.svg";
 
 const Footer = () => {
     return (
-        <footer className="bg-gradient-to-b from-base to-[#2C418F] text-gray-200 py-12 pt-36 relative">
-            <div className="container mx-auto px-6">
+        <footer className="bg-gradient-to-b from-base to-[#2C418F] text-gray-200 py-12 pt-36 relative overflow-hidden">
+            <div className="absolute h-[119px] w-[90%] rounded-t-full max-w-[1100px] bg-white top-[calc(100%-.35rem)] left-1/2 -translate-x-1/2"></div>
+            <div className="container mx-auto px-6 text-[20px] font-light">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-10 px-16">
                     <div className="md:col-span-4 flex flex-col items-center md:items-start">
                         <img src={logo} alt="Hovertask Logo" className="w-36 mb-4" />
-                        <p className="text-sm leading-relaxed max-w-xs text-center md:text-left">
+                        <p className="max-w-xs text-center md:text-left">
                             Our mission is to create opportunities for people to earn daily income while helping
                             businesses reach a wider audience.
                         </p>
                     </div>
                     <div className="md:col-span-3 text-center md:text-left">
-                        <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+                        <h3 className="text-lg font-medium text-white mb-4">Quick Links</h3>
                         <ul className="space-y-2">
                             {["Home", "Marketplace", "About Us", "FAQ", "Contact Us"].map((link) => (
                                 <li key={link}>
@@ -27,7 +28,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="md:col-span-2 text-center md:text-left">
-                        <h3 className="text-lg font-semibold text-white mb-4">Useful Links</h3>
+                        <h3 className="text-lg font-medium text-white mb-4">Useful Links</h3>
                         <ul className="space-y-2">
                             {["Privacy Policy", "Terms & Conditions", "Support"].map((link) => (
                                 <li key={link}>
@@ -39,7 +40,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="md:col-span-3 flex flex-col items-center md:items-start">
-                        <h3 className="text-lg font-semibold text-white mb-4">Install Our App</h3>
+                        <h3 className="text-lg font-medium text-white mb-4">Install Our App</h3>
                         <div className="flex-col flex gap-4">
                             <a href="#">
                                 <img
