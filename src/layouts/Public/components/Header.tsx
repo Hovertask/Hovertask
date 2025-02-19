@@ -21,7 +21,7 @@ const Header = () => {
                 {/* Desktop Navigation */}
 
                 {/* Create Account Button */}
-                <div className="hidden md:block">
+                <div className="hidden lg:block">
                     <Link
                         to="/signup"
                         className="bg-base hover:bg-blue-500 text-white p-4 rounded-full font-medium shadow-md transition-all duration-300"
@@ -32,7 +32,7 @@ const Header = () => {
                 {/* Create Account Button */}
 
                 {/* Mobile Menu Button */}
-                <div className="md:hidden">
+                <div className="lg:hidden">
                     <button onClick={() => setMenuOpen(!menuOpen)} className="text-gray-800 text-2xl">
                         {menuOpen ? <MdClose /> : <RiMenu2Line />}
                     </button>
@@ -47,7 +47,7 @@ const Header = () => {
 };
 
 const DesktopNav = ({ pathname }: { pathname: string }) => (
-    <nav role="navigation" className="hidden md:flex gap-[50px] items-center">
+    <nav role="navigation" className="hidden lg:flex gap-[50px] items-center">
         {navLinks.map((item) => (
             <Link
                 to={item.path}
@@ -67,7 +67,7 @@ const DesktopNav = ({ pathname }: { pathname: string }) => (
 );
 
 const MobileNav = ({ pathname, setMenuOpen }: { pathname: string; setMenuOpen: Dispatch<SetStateAction<boolean>> }) => (
-    <div className="md:hidden bg-white shadow-md absolute top-[94.2px] left-0 w-full z-50 py-6 bg-gradient-to-r from-blue-50 to-purple-100">
+    <div className="lg:hidden bg-white shadow-md absolute top-[94.2px] left-0 w-full z-50 py-6 bg-gradient-to-r from-blue-50 to-purple-100">
         <div className="flex flex-col items-center space-y-6">
             {navLinks.map((item) => (
                 <Link
