@@ -13,32 +13,32 @@ const CoreValues = () => {
                     </div>
                     <img src="/assets/images/Rectangle 39338.png" alt="Core Values" className="rounded-xl" />
                 </div>
-                <div className="w-[50%] flex flex-col gap-4 max-md:w-full space-y-3 leading-8 text-[23.1px]">
-                    <p className="flex items-start gap-4 font-light max-md:text-center">
-                        <span className="text-base flex items-center gap-2">
+                <div className="w-[50%] max-md:w-full space-y-3 leading-8 text-[20px] max-md:p-4">
+                    <p className="md:flex items-start gap-4">
+                        <span className="text-base inline-flex items-center gap-2">
                             <LuDot className="text-base" size={24} /> Transparency:
                         </span>{" "}
                         We ensure honesty and clarity in all transactions.
                     </p>
-                    <p className="flex items-start gap-4 font-light max-md:text-center">
-                        <span className="text-base flex items-center gap-2">
+                    <p className="md:flex items-start gap-4">
+                        <span className="text-base inline-flex items-center gap-2">
                             <LuDot className="text-base" size={24} /> Innovation:
                         </span>{" "}
                         We continuously improve to serve you better.
                     </p>
-                    <p className="flex items-start gap-4 font-light max-md:text-center">
-                        <span className="text-base flex items-center gap-2">
+                    <p className="md:flex items-start gap-4">
+                        <span className="text-base inline-flex items-center gap-2">
                             <LuDot className="text-base" size={24} /> Empowerment:
                         </span>{" "}
                         We aim to uplift individuals and businesses alike.
                     </p>
-                    <p className="flex items-start gap-4 font-light max-md:text-center">
-                        <span className="text-base flex items-center gap-2">
+                    <p className="md:flex items-start gap-4">
+                        <span className="text-base inline-flex items-center gap-2">
                             <LuDot className="text-base" size={24} /> Community:
                         </span>{" "}
                         We are building a network where everyone can thrive together.
                     </p>
-                    <div className="mt-8 flex gap-4">
+                    <div className="mt-8 flex flex-wrap gap-4">
                         <Link
                             to="/signup"
                             className="px-6 py-2 bg-base text-white rounded-3xl shadow-md hover:bg-[#2C418F] transition"
