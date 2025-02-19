@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 const CoreValues = () => {
     return (
         <div className="w-full flex flex-col bg-white items-center justify-center py-12 px-14 max-md:px-1">
-            <div className="w-full flex items-center justify-center gap-5 max-md:flex-col">
-                <div className="w-[40%] max-md:w-[90%]">
-                    <div className="w-[60%] max-md:w-full max-md:justify-center bg-gradient-to-l from-[#DAE2FF]/10 to-[#DAE2FF] h-[7rem] flex justify-center items-center rounded-3xl transform rotate-[-2deg] ">
+            <div className="w-full flex items-center justify-center gap-5 max-lg:flex-col">
+                <div className="lg:w-[40%] w-[90%]">
+                    <div className="lg:w-[60%] max-lg:justify-center bg-gradient-to-l from-[#DAE2FF]/10 to-[#DAE2FF] h-[7rem] flex justify-center items-center rounded-3xl transform rotate-[-2deg] ">
                         <p className="text-4xl font-light bg-gradient-to-l from-[#2C418F] to-base text-transparent bg-clip-text">
                             Our Core <span className="text-black">Values</span>
                         </p>
                     </div>
                     <img src="/assets/images/Rectangle 39338.png" alt="Core Values" className="rounded-xl" />
                 </div>
-                <div className="w-[50%] max-md:w-full space-y-3 leading-8 text-[20px] max-md:p-4">
+                <div className="lg:w-[50%] max-md:w-full space-y-3 leading-8 text-[20px] max-md:p-4">
                     <p className="md:flex items-start gap-4">
                         <span className="text-base inline-flex items-center gap-2">
                             <LuDot className="text-base" size={24} /> Transparency:

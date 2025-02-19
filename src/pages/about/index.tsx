@@ -4,7 +4,7 @@ import CoreValues from "./components/CoreValues";
 const About = () => {
     return (
         <div>
-            <section className="hero">
+            <section className="hero p-4">
                 <div className="space-y-6 p-4 text-center py-16">
                     <h1 className="text-[55.62px] mb-4 gradient-text">About Us - Hovertask</h1>
                     <p className="text-[33.37px]">Introduction</p>
