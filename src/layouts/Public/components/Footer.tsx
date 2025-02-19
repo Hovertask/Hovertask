@@ -7,15 +7,15 @@ const Footer = () => {
         <footer className="bg-gradient-to-b from-base to-[#2C418F] text-gray-200 py-12 pt-36 relative overflow-hidden">
             <div className="absolute h-[119px] w-[90%] rounded-t-full max-w-[1100px] bg-white top-[calc(100%-.35rem)] left-1/2 -translate-x-1/2"></div>
             <div className="container mx-auto px-6 text-[20px] font-light">
-                <div className="flex max-lg:flex-col gap-10 px-16">
-                    <div className="flex flex-col items-center lg:items-start">
+                <div className="flex max-lg:flex-col gap-10 md:px-16 p-4">
+                    <div className="flex flex-col">
                         <img src={logo} alt="Hovertask Logo" className="w-36 mb-4" />
-                        <p className="max-w-xs text-center lg:text-left">
+                        <p className="lg:max-w-xs">
                             Our mission is to create opportunities for people to earn daily income while helping
                             businesses reach a wider audience.
                         </p>
                     </div>
-                    <div className="grid grid-cols-2 lg:grid-cols-3 flex-1 gap-10">
+                    <div className="grid grid-cols-2 md:grid-cols-3 flex-1 gap-10">
                         <div>
                             <h3 className="text-lg font-medium text-white mb-4">Quick Links</h3>
                             <ul className="space-y-2">
