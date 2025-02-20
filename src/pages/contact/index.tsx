@@ -3,14 +3,10 @@ import { FaYoutube, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { CgMail } from "react-icons/cg";
 import { BiPhone } from "react-icons/bi";
 
-const SectionHeader = ({ title }: { title: string }) => (
-    <p className="text-4xl font-light bg-gradient-to-l from-[#2C418F] to-base text-transparent bg-clip-text">{title}</p>
-);
-
 const ContactUs = () => {
     return (
-        <div className="w-full h-auto flex flex-col items-center py-5">
-            <h2 className="gradient-text text-[53.92px] text-center">Contact Us</h2>
+        <div className="w-full h-auto flex flex-col items-center">
+            <h2 className="gradient-text text-[53.92px] text-center  pt-14">Contact Us</h2>
             <div className="relative w-full max-w-4xl h-[20rem] rounded-2xl overflow-hidden transform rotate-[-2deg] mb-10 px-2">
                 <img
                     src="/assets/images/Group 1000004576.png"
@@ -34,7 +30,7 @@ const ContactForm = () => {
         <div className="w-full max-w-6xl px-4 space-y-10">
             {/* Section Title */}
             <div className="text-center">
-                <SectionHeader title="Get in Touch" />
+                <h2 className="gradient-text text-[53.92px] text-center  pt-14">Get In Touch</h2>
             </div>
 
             {/* Contact Container */}
@@ -108,7 +104,7 @@ const ContactForm = () => {
 
             {/* Social Media Section */}
             <div className="text-center space-y-6">
-                <SectionHeader title="Follow Us on Social Media" />
+                <h2 className="gradient-text text-[53.92px] text-center  pt-14">Follow Us On Social Media</h2>
                 <div className="flex justify-center space-x-4 text-base">
                     {[FaYoutube, FaTwitter, FaInstagram, FaLinkedin].map((Icon, index) => (
                         <button

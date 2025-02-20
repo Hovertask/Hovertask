@@ -1,3 +1,5 @@
+import listImage from "../../../assets/Ellipse 1564.svg";
+
 const EarnByHelpingSection = () => {
     return (
         <section className="max-w-screen-lg mx-auto flex max-lg:flex-col items-center justify-center px-4 pb-32">
@@ -6,14 +8,18 @@ const EarnByHelpingSection = () => {
                 <p className="text-[20px] mb-12">
                     Get paid by helping people grow, no investment or signup fee required.
                 </p>
-                <ul className="list-disc list-inside mb-6 text-[20px] space-y-2">
-                    <li>Over 1000 daily tasks</li>
-                    <li>Instant withdrawals</li>
-                    <li>No investment or signup fee required</li>
+                <ul className="list-inside mb-6 text-[20px] space-y-2">
+                    <li className="flex items-center gap-4">
+                        <img src={listImage} alt="." /> Over 1000 daily tasks
+                    </li>
+                    <li className="flex items-center gap-4">
+                        <img src={listImage} alt="." /> Instant withdrawals
+                    </li>
+                    <li className="flex items-center gap-4">
+                        <img src={listImage} alt="." /> No investment or signup fee required
+                    </li>
                 </ul>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-3xl">
-                    Create Account
-                </button>
+                <button className="bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-3xl">Create Account</button>
             </div>
             <div className="lg:block w-1/2 relative">
                 <img
