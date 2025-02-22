@@ -76,13 +76,9 @@ const Market = () => {
                 </p>
             </div>
 
-            {/* Trending Products & Services */}
             <TrendingProductsAndServices />
-            {/* Trending Products & Services */}
-
-            {/* Black Friday sales */}
             <BlackFridaySales />
-            {/* Black Friday sales */}
+            <BannersCarousel />
         </div>
     );
 };
@@ -124,7 +120,7 @@ const ProductsSection = ({ heading, products }: { heading?: string; products: Pr
 
 const ProductCard = (props: Product) => {
     return (
-        <div className="min-w-[180px] w-[180px] bg-white shadow-lg rounded-2xl p-4 space-y-2">
+        <div className="min-w-[180px] w-[180px] bg-white rounded-2xl p-4 space-y-2">
             <div className="bg-zinc-200 rounded-2xl overflow-hidden">
                 <img className="h-[97.7px]" src={props.featured_image_url} alt={props.name} />
             </div>
@@ -158,6 +154,22 @@ const ProductCard = (props: Product) => {
                 >
                     <img src={arrow} alt="Arrow north east" />
                 </Link>
+            </div>
+        </div>
+    );
+};
+
+const BannersCarousel = () => {
+    return (
+        <div className="space-y-2">
+            <div className="flex overflow-auto items-center">
+                <img className="w-full h-auto" src="/assets/images/Group 1000004390.png" alt="Banner" />
+            </div>
+            <div className="grid grid-cols-5 gap-1 w-[108px] mx-auto">
+                <span className="h-[3.47px] w-full col-span-2 bg-base"></span>
+                <span className="h-[3.47px] bg-[#B3B3B3] w-full"></span>
+                <span className="h-[3.47px] bg-[#B3B3B3] w-full"></span>
+                <span className="h-[3.47px] bg-[#B3B3B3] w-full"></span>
             </div>
         </div>
     );

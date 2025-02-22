@@ -3,8 +3,8 @@ import { FaCaretDown } from "react-icons/fa";
 import { MdOutlineTune } from "react-icons/md";
 
 const Hero = () => (
-    <div className="h-[348px] rounded-3xl relative overflow-hidden flex flex-col justify-end gap-8 z-0 p-8">
-        <img src="/assets/images/image 3.png" alt="Hero image" className="absolute inset-0 z-0" />
+    <div className="min-h-[348px] rounded-3xl relative overflow-hidden flex flex-col justify-end gap-8 z-0 p-8">
+        <img src="/assets/images/image 3.png" alt="Hero image" className="absolute inset-0 z-0 h-full" />
         <div className="max-w-sm p-4 bg-gradient-to-r from-black to-transparent z-10 text-2xl font-extrabold text-white">
             Connect, Trade, and Earn on Hovertask Market Place.
         </div>
