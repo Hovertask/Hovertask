@@ -79,6 +79,11 @@ const Market = () => {
             <TrendingProductsAndServices />
             <BlackFridaySales />
             <BannersCarousel />
+            <BestDealServices />
+            <TrendingWomensWear />
+            <BlackFridaySales />
+            <HottestDeals />
+            <BannersCarousel />
         </div>
     );
 };
@@ -173,6 +178,18 @@ const BannersCarousel = () => {
             </div>
         </div>
     );
+};
+
+const BestDealServices = () => {
+    return <ProductsSection heading="Best Deal Services" products={products} />;
+};
+
+const TrendingWomensWear = () => {
+    return <ProductsSection heading="Trending Women's Wear" products={products} />;
+};
+
+const HottestDeals = () => {
+    return <ProductsSection heading="Hottest Deals" products={products} />;
 };
 
 export default Market;
