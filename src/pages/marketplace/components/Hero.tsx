@@ -4,7 +4,7 @@ import { MdOutlineTune } from "react-icons/md";
 
 const Hero = () => (
     <div className="min-h-[348px] rounded-3xl relative overflow-hidden flex flex-col justify-end gap-8 z-0 p-8">
-        <img src="/assets/images/image 3.png" alt="Hero image" className="absolute inset-0 z-0 h-full" />
+        <img src="/assets/images/image 3.png" alt="Hero image" className="absolute inset-0 z-0 h-full w-full" />
         <div className="max-w-sm p-4 bg-gradient-to-r from-black to-transparent z-10 text-2xl font-extrabold text-white">
             Connect, Trade, and Earn on Hovertask Market Place.
         </div>
