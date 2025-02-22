@@ -3,10 +3,10 @@ import LandingPage from "./pages/index";
 import PublicLayout from "./layouts/Public";
 import Signup from "./auth/Signup";
 import SignIn from "./auth/Signin";
-import MarketPlace from "./pages/dashboard/components/MarketPlace";
 import Faq from "./pages/index/components/Faq";
 import About from "./pages/about";
 import ContactUs from "./pages/contact";
+import Marketplace from "./pages/marketplace";
 
 const App = () => {
     return (
@@ -19,8 +19,8 @@ const App = () => {
                     <Route path="contact" element={<ContactUs />} />
                     <Route path="signup" element={<Signup />} />
                     <Route path="signin" element={<SignIn />} />
-                    <Route path="market" element={<MarketPlace />} />
                     <Route path="faq" element={<Faq />} />
+                    <Route path="marketplace" element={<Marketplace />} />
                 </Route>
                 {/* Public routes */}
             </Routes>

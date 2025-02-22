@@ -4,7 +4,7 @@ const navLinks = [
         label: "Home"
     },
     {
-        path: "/market",
+        path: "/marketplace",
         label: "Marketplace"
     },
     {
