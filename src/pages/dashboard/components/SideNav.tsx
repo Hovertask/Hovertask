@@ -63,7 +63,7 @@ const SideNav = () => {
     return (
         <div className="max-w-[243px] space-y-12">
             <div className="bg-[#3F5FCF] py-20 pl-6 rounded-3xl text-white">
-                <div className="border-1 boder border-[#FFFFFF33] pl-4 pr-2 py-10 rounded-2xl space-y-3">
+                <div className="border-1 border-[#FFFFFF33] pl-4 pr-2 py-10 rounded-2xl space-y-3">
                     {navLinks.map((link) => {
                         return (
                             <Link
