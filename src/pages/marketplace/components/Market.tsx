@@ -50,7 +50,7 @@ const Market = () => {
     const location = useLocation();
 
     return (
-        <div className="bg-white shadow-md px-4 py-8 max-w-screen-md mx-auto space-y-8">
+        <div className="bg-white shadow-md px-4 py-8 max-w-screen-md space-y-8">
             {/* Only show this component on the dashboard */}
             {location.pathname.includes("dashboard") && (
                 <div className="flex items-center gap-4">
@@ -169,6 +169,8 @@ const BannersCarousel = () => {
         <div className="space-y-2">
             <div className="flex overflow-auto items-center">
                 <img className="w-full h-auto" src="/assets/images/Group 1000004390.png" alt="Banner" />
+                <img className="w-full h-auto" src="/assets/images/Group 1000004393.png" alt="Banner" />
+                <img className="w-full h-auto" src="/assets/images/Group 1000004395.png" alt="Banner" />
             </div>
             <div className="grid grid-cols-5 gap-1 w-[108px] mx-auto">
                 <span className="h-[3.47px] w-full col-span-2 bg-base"></span>
