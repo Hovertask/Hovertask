@@ -1,21 +1,9 @@
 import { BsArrowLeft } from "react-icons/bs";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Hero from "./Hero";
-import { BiStar } from "react-icons/bi";
-import { FaHeart } from "react-icons/fa";
-import storeIcon from "../../../assets/store-button.svg";
-import arrow from "../../../assets/arrow.svg";
 import { useEffect, useRef, useState } from "react";
-
-interface Product {
-    name: string;
-    price: number;
-    discount: number;
-    reviews_count: number;
-    rating: number;
-    available_units: number;
-    featured_image_url: string;
-}
+import { Product } from "./ProductCard";
+import ProductsSection from "./ProductsSection";
 
 const products: Product[] = [
     {
@@ -51,7 +39,7 @@ const Market = () => {
     const location = useLocation();
 
     return (
-        <div className="bg-white shadow-md px-4 py-8 max-w-screen-md space-y-8">
+        <div className="bg-white shadow-md px-4 py-8 max-w-[724px] space-y-8">
             {/* Only show this component on the dashboard */}
             {location.pathname.includes("dashboard") && (
                 <div className="flex items-center gap-4">
@@ -104,65 +92,16 @@ const BlackFridaySales = () => {
     );
 };
 
-const ProductsSection = ({ heading, products }: { heading?: string; products: Product[] }) => {
-    return (
-        <div className="space-y-4">
-            {heading && (
-                <div className="flex items-center justify-between">
-                    <h2>{heading}</h2>
-                    <Link to="#" className="font-light text-base">
-                        View All
-                    </Link>
-                </div>
-            )}
-            <div className="flex gap-4 bg-[#EBEFFF] p-4 rounded-2xl overflow-x-auto no-scrollbar max-w-full">
-                {products.map((product) => (
-                    <ProductCard key={product.name} {...product} />
-                ))}
-            </div>
-        </div>
-    );
+const BestDealServices = () => {
+    return <ProductsSection heading="Best Deal Services" products={products} />;
 };
 
-const ProductCard = (props: Product) => {
-    return (
-        <div className="min-w-[180px] w-[180px] bg-white rounded-2xl p-4 space-y-2">
-            <div className="bg-zinc-200 rounded-2xl overflow-hidden">
-                <img className="h-[97.7px]" src={props.featured_image_url} alt={props.name} />
-            </div>
-            <div>
-                <div className="flex justify-between">
-                    <h3 className="text-[11.28px] capitalize">{props.name}</h3>
-                    <button className="text-[#FF00FB]">
-                        <FaHeart />
-                    </button>
-                </div>
-                <div className="flex gap-6">
-                    <p className="text-[9.4px] text-[#77777A] line-through">{props.price}</p>
-                    <p className="text-[11.28px]">{props.price * (props.discount / 100)}</p>
-                </div>
-                <div className="flex gap-4 items-center">
-                    <p className="text-[9.4px] flex items-center">
-                        <BiStar /> {props.rating}
-                    </p>
-                    <p className="text-[9.4px] text-base">({props.reviews_count} Reviews)</p>
-                    <p className="text-[#77777A] text-[9.11px]">{props.available_units} Units</p>
-                </div>
-            </div>
-            <div className="flex items-center justify-between">
-                <button className="flex gap-1 justify-center items-center bg-base text-white rounded-full h-[27.75px] w-[106px] text-[9.64px]">
-                    <img src={storeIcon} alt="store icon" />
-                    Buy Product
-                </button>
-                <Link
-                    to="#"
-                    className="flex items-center justify-center rounded-full h-[28.92px] w-[28.92px] border border-base"
-                >
-                    <img src={arrow} alt="Arrow north east" />
-                </Link>
-            </div>
-        </div>
-    );
+const TrendingWomensWear = () => {
+    return <ProductsSection heading="Trending Women's Wear" products={products} />;
+};
+
+const HottestDeals = () => {
+    return <ProductsSection heading="Hottest Deals" products={products} />;
 };
 
 const BannersCarousel = () => {
@@ -206,18 +145,6 @@ const BannersCarousel = () => {
             </div>
         </div>
     );
-};
-
-const BestDealServices = () => {
-    return <ProductsSection heading="Best Deal Services" products={products} />;
-};
-
-const TrendingWomensWear = () => {
-    return <ProductsSection heading="Trending Women's Wear" products={products} />;
-};
-
-const HottestDeals = () => {
-    return <ProductsSection heading="Hottest Deals" products={products} />;
 };
 
 export default Market;
