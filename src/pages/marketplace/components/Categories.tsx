@@ -17,7 +17,7 @@ const Categories = () => {
         "Grocery"
     ];
     return (
-        <div className="max-w-[232px] mt-24 space-y-10">
+        <div className="mt-24 space-y-10 max-lg:hidden">
             <div className="border-1 border-[#66666666] rounded-3xl p-6 space-y-6">
                 <div>
                     <h3>Explore Our Categories</h3>

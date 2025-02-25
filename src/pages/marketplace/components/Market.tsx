@@ -39,7 +39,7 @@ const Market = () => {
     const location = useLocation();
 
     return (
-        <div className="bg-white shadow-md px-4 py-8 max-w-[724px] space-y-8">
+        <div className="bg-white shadow-md px-4 py-8 space-y-8 overflow-hidden">
             {/* Only show this component on the dashboard */}
             {location.pathname.includes("dashboard") && (
                 <div className="flex items-center gap-4">

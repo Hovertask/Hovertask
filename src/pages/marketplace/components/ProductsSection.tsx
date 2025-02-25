@@ -28,7 +28,7 @@ const ProductsSection = ({
                     vertical ? "" : "p-4"
                 } flex gap-4 bg-[#EBEFFF] rounded-2xl overflow-y-hidden max-w-full h-[254px]`}
             >
-                {startComponent && <div className="h-full w-fit">{startComponent}</div>}
+                {startComponent && <div className="h-full w-fit max-md:hidden">{startComponent}</div>}
                 <div
                     className={`${
                         vertical ? "flex-col" : ""
