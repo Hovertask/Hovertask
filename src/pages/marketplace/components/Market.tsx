@@ -94,7 +94,7 @@ const TrendingProductsAndServices = () => {
 
 const BlackFridaySales = () => {
     return (
-        <div className="grid [grid-template-columns:_auto_1fr] items-center gap-6 overflow-auto">
+        <div className="grid [grid-template-columns:_auto_1fr] items-center gap-6 overflow-auto no-scrollbar">
             <div className="w-[192px]">
                 <img src="/assets/images/Group 1000004394.png" alt="Black friday banner" className="block w-fit" />
             </div>
@@ -114,7 +114,7 @@ const ProductsSection = ({ heading, products }: { heading?: string; products: Pr
                     </Link>
                 </div>
             )}
-            <div className="flex gap-4 bg-[#EBEFFF] p-4 rounded-2xl overflow-x-auto max-w-full">
+            <div className="flex gap-4 bg-[#EBEFFF] p-4 rounded-2xl overflow-x-auto no-scrollbar max-w-full">
                 {products.map((product) => (
                     <ProductCard key={product.name} {...product} />
                 ))}
@@ -167,7 +167,7 @@ const ProductCard = (props: Product) => {
 const BannersCarousel = () => {
     return (
         <div className="space-y-2">
-            <div className="flex overflow-auto items-center">
+            <div className="flex overflow-auto no-scrollbar items-center">
                 <img className="w-full h-auto" src="/assets/images/Group 1000004390.png" alt="Banner" />
                 <img className="w-full h-auto" src="/assets/images/Group 1000004393.png" alt="Banner" />
                 <img className="w-full h-auto" src="/assets/images/Group 1000004395.png" alt="Banner" />

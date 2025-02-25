@@ -18,3 +18,14 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+.no-scrollbar {
+    scrollbar-width: 0;
+    scroll-behavior: smooth;
+}
