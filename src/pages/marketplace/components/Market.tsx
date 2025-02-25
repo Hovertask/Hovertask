@@ -93,7 +93,13 @@ const BlackFridaySales = () => {
 };
 
 const BestDealServices = () => {
-    return <ProductsSection heading="Best Deal Services" products={products} />;
+    return (
+        <ProductsSection
+            startComponent={<ProductsSection vertical products={products} />}
+            heading="Best Deal Services"
+            products={products}
+        />
+    );
 };
 
 const TrendingWomensWear = () => {
@@ -101,10 +107,14 @@ const TrendingWomensWear = () => {
 };
 
 const HottestDeals = () => {
-    return <ProductsSection heading="Hottest Deals" products={products} />;
+    return (
+        <ProductsSection
+            startComponent={<ProductsSection vertical products={products} />}
+            heading="Hottest Deals"
+            products={products}
+        />
+    );
 };
-
-const ProductCarousel = () => {};
 
 const BannersCarousel = () => {
     const carouselRef = useRef<HTMLDivElement>(null);

@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import ProductCard, { Product } from "./ProductCard";
+import { ReactNode } from "react";
 
-const ProductsSection = ({ heading, products }: { heading?: string; products: Product[] }) => {
+const ProductsSection = ({
+    heading,
+    products,
+    vertical,
+    startComponent
+}: {
+    heading?: string;
+    products: Product[];
+    vertical?: boolean;
+    startComponent?: ReactNode;
+}) => {
     return (
         <div className="space-y-4">
             {heading && (
@@ -12,10 +23,21 @@ const ProductsSection = ({ heading, products }: { heading?: string; products: Pr
                     </Link>
                 </div>
             )}
-            <div className="flex gap-4 bg-[#EBEFFF] p-4 rounded-2xl overflow-x-auto no-scrollbar max-w-full">
-                {products.map((product) => (
-                    <ProductCard key={product.name} {...product} />
-                ))}
+            <div
+                className={`${
+                    vertical ? "" : "p-4"
+                } flex gap-4 bg-[#EBEFFF] rounded-2xl overflow-y-hidden max-w-full h-[254px]`}
+            >
+                {startComponent && <div className="h-full w-fit">{startComponent}</div>}
+                <div
+                    className={`${
+                        vertical ? "flex-col" : ""
+                    } flex-1 flex gap-4 overflow-x-auto no-scrollbar max-w-full h-full`}
+                >
+                    {products.map((product) => (
+                        <ProductCard horizontal={vertical} key={product.name} {...product} />
+                    ))}
+                </div>
             </div>
         </div>
     );
