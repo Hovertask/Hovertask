@@ -29,6 +29,19 @@ const Categories = () => {
                 <div className="space-y-4">
                     {categories.map((category) => (
                         <button
+                            // TODO: Refactor the functionality of this function
+                            onClick={() =>
+                                setCurrentCategories((prev) => {
+                                    if (prev.includes("All") && category === "All") return prev;
+                                    else if (prev.includes("All")) {
+                                        if (prev.includes(category)) return prev.filter((c) => c !== category);
+                                        else return [category];
+                                    } else {
+                                        if (prev.includes(category)) return prev.filter((c) => c !== category);
+                                        else return [...prev, category];
+                                    }
+                                })
+                            }
                             className={`${
                                 currentCategories.includes(category) ? "bg-base text-white" : "bg-[#EBEBEB]"
                             } border-1 border-[#66666666] py-2 px-6 rounded-2xl whitespace-nowrap text-[13.5px]`}
