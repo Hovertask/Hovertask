@@ -104,6 +104,8 @@ const HottestDeals = () => {
     return <ProductsSection heading="Hottest Deals" products={products} />;
 };
 
+const ProductCarousel = () => {};
+
 const BannersCarousel = () => {
     const carouselRef = useRef<HTMLDivElement>(null);
     const [currentSlide, setCurrentSlide] = useState(1);
@@ -130,17 +132,17 @@ const BannersCarousel = () => {
                 <span
                     className={`${
                         currentSlide === 1 ? "col-span-2 bg-base" : "bg-[#B3B3B3]"
-                    } h-[3.47px] w-full transition`}
+                    } h-[3.47px] w-full rounded-full inline-block`}
                 ></span>
                 <span
                     className={`${
                         currentSlide === 2 ? "col-span-2 bg-base" : "bg-[#B3B3B3]"
-                    }  h-[3.47px] w-full transition"`}
+                    }  h-[3.47px] w-full rounded-full inline-block"`}
                 ></span>
                 <span
                     className={`${
                         currentSlide === 3 ? "col-span-2 bg-base" : "bg-[#B3B3B3]"
-                    }  h-[3.47px] w-full transition"`}
+                    }  h-[3.47px] w-full rounded-full inline-block"`}
                 ></span>
             </div>
         </div>
