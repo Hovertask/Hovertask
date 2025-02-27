@@ -7,6 +7,8 @@ import Faq from "./pages/index/components/Faq";
 import About from "./pages/about";
 import ContactUs from "./pages/contact";
 import Marketplace from "./pages/marketplace";
+import Market from "./pages/marketplace/components/Market";
+import Trending from "./pages/marketplace/components/Trending";
 
 const App = () => {
     return (
@@ -20,7 +22,10 @@ const App = () => {
                     <Route path="signup" element={<Signup />} />
                     <Route path="signin" element={<SignIn />} />
                     <Route path="faq" element={<Faq />} />
-                    <Route path="marketplace" element={<Marketplace />} />
+                    <Route path="marketplace" element={<Marketplace />}>
+                        <Route index element={<Market />} />
+                        <Route path="trending" element={<Trending />} />
+                    </Route>
                 </Route>
                 {/* Public routes */}
             </Routes>

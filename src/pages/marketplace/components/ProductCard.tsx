@@ -12,19 +12,25 @@ export interface Product {
     rating: number;
     available_units: number;
     featured_image_url: string;
-    horizontal?: boolean;
 }
 
-const ProductCard = (props: Product) => {
+interface ProductProps extends Product {
+    horizontal?: boolean;
+    responsive?: boolean;
+}
+
+const ProductCard = (props: ProductProps) => {
     return (
         <div
-            className={`${props.horizontal ? "flex gap-2 items-center" : ""} min-w-[180px] ${
-                props.horizontal ? "w-[320px]" : "w-[180px]"
+            className={`${props.horizontal ? "flex gap-2 items-center" : ""} ${
+                props.horizontal ? "w-[320px]" : props.responsive ? "" : "w-[180px]"
             } bg-white rounded-2xl p-4 space-y-2`}
         >
             <div className="bg-zinc-200 rounded-2xl overflow-hidden">
                 <img
-                    className={`${props.horizontal ? "w-[131px]" : "h-[97.7px]"} aspect-square block`}
+                    className={`${
+                        props.horizontal ? "min-w-[131px]" : props.responsive ? "" : "h-[97.7px]"
+                    } aspect-square block`}
                     src={props.featured_image_url}
                     alt={props.name}
                 />
@@ -49,14 +55,14 @@ const ProductCard = (props: Product) => {
                         <p className="text-[#77777A] text-[9.11px]">{props.available_units} Units</p>
                     </div>
                 </div>
-                <div className="flex items-center justify-between">
-                    <button className="flex gap-1 justify-center items-center bg-base text-white rounded-full h-[27.75px] w-[106px] text-[9.64px]">
+                <div className="flex items-center justify-between gap-2">
+                    <button className="flex gap-1 justify-center items-center bg-base text-white rounded-full h-[27.75px] text-[9.64px] flex-1">
                         <img src={storeIcon} alt="store icon" />
                         Buy Product
                     </button>
                     <Link
                         to="#"
-                        className="flex items-center justify-center rounded-full h-[28.92px] w-[28.92px] border border-base"
+                        className="flex items-center justify-center rounded-full min-h-[28.92px] min-w-[28.92px] border border-base"
                     >
                         <img src={arrow} alt="Arrow north east" />
                     </Link>

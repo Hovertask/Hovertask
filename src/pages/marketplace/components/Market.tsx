@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Product } from "./ProductCard";
 import ProductsSection from "./ProductsSection";
 
-const products: Product[] = [
+export const products: Product[] = [
     {
         name: "Product 1",
         price: 100,
@@ -39,10 +39,10 @@ const Market = () => {
     const location = useLocation();
 
     return (
-        <div className="bg-white shadow-md px-4 py-8 space-y-8 overflow-hidden">
+        <>
             {/* Only show this component on the dashboard */}
             {location.pathname.includes("dashboard") && (
-                <div className="flex items-center gap-4">
+                <section className="flex items-center gap-4">
                     <div>
                         <BsArrowLeft size={30} />
                     </div>
@@ -52,7 +52,7 @@ const Market = () => {
                             Your one-stop platform to buy, sell, and earn effortlessly.
                         </p>
                     </div>
-                </div>
+                </section>
             )}
 
             {/* Hero */}
@@ -73,22 +73,22 @@ const Market = () => {
             <BlackFridaySales />
             <HottestDeals />
             <BannersCarousel />
-        </div>
+        </>
     );
 };
 
 const TrendingProductsAndServices = () => {
-    return <ProductsSection heading="Trending Products & Services" products={products} />;
+    return <ProductsSection heading="Trending Products & Services" products={products} link="trending" />;
 };
 
 const BlackFridaySales = () => {
     return (
-        <div className="grid [grid-template-columns:_auto_1fr] items-center gap-6 overflow-auto no-scrollbar">
+        <section className="grid [grid-template-columns:_auto_1fr] items-center gap-6 overflow-auto no-scrollbar">
             <div className="w-[192px]">
                 <img src="/assets/images/Group 1000004394.png" alt="Black friday banner" className="block w-fit" />
             </div>
             <ProductsSection products={products} />
-        </div>
+        </section>
     );
 };
 
