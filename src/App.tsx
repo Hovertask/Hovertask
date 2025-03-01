@@ -8,7 +8,10 @@ import About from "./pages/about";
 import ContactUs from "./pages/contact";
 import Marketplace from "./pages/marketplace";
 import Market from "./pages/marketplace/components/Market";
-import Trending from "./pages/marketplace/components/Trending";
+import Trending from "./pages/marketplace/trending";
+import BestDealServices from "./pages/marketplace/best-deal-services";
+import TrendingWomensWear from "./pages/marketplace/trending-womens-wear";
+import HottestDealsServices from "./pages/marketplace/hottest-deals-services";
 
 const App = () => {
     return (
@@ -25,6 +28,9 @@ const App = () => {
                     <Route path="marketplace" element={<Marketplace />}>
                         <Route index element={<Market />} />
                         <Route path="trending" element={<Trending />} />
+                        <Route path="best-deal-services" element={<BestDealServices />} />
+                        <Route path="trending-womens-wear" element={<TrendingWomensWear />} />
+                        <Route path="hottest-deals-services" element={<HottestDealsServices />} />
                     </Route>
                 </Route>
                 {/* Public routes */}

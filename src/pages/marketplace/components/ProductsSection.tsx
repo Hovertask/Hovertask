@@ -11,6 +11,7 @@ interface ProductSectionProps {
     startComponent?: ReactNode;
     link?: string;
     useResponsiveCard?: boolean;
+    loadAsyncProducts?: boolean;
 }
 
 const ProductsSection = ({
@@ -20,7 +21,8 @@ const ProductsSection = ({
     startComponent,
     link,
     grid,
-    useResponsiveCard
+    useResponsiveCard,
+    loadAsyncProducts
 }: ProductSectionProps) => {
     return (
         <section className="space-y-4">
@@ -37,7 +39,7 @@ const ProductsSection = ({
             <div
                 className={`${vertical || "p-4"} ${
                     grid || "h-[254px]"
-                } flex gap-4 bg-[#EBEFFF] rounded-2xl overflow-y-hidden max-w-full`}
+                } flex gap-4 bg-[#EBEFFF] rounded-2xl overflow-y-hidden max-w-full no-scrollbar`}
             >
                 {startComponent && <div className="h-full w-fit max-md:hidden">{startComponent}</div>}
                 <div
@@ -55,11 +57,13 @@ const ProductsSection = ({
                     ))}
                 </div>
             </div>
-            <div className="flex justify-end">
-                <button className="flex items-center justify-center rounded-full h-[28.92px] border border-base text-base cursor-pointer text-[14.39px] p-[7.2px]">
-                    Load more products <img src={arrow} alt="Arrow north east" />
-                </button>
-            </div>
+            {loadAsyncProducts && (
+                <div className="flex justify-end">
+                    <button className="flex items-center justify-center rounded-full h-[28.92px] border border-base text-base cursor-pointer text-[14.39px] p-[7.2px]">
+                        Load more products <img src={arrow} alt="Arrow north east" />
+                    </button>
+                </div>
+            )}
         </section>
     );
 };

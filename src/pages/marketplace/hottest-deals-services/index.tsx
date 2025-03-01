@@ -1,0 +1,40 @@
+import { BsArrowLeft } from "react-icons/bs";
+import { Link, useLocation } from "react-router-dom";
+import BestDealServices from "../BestDealServices";
+import ProductsSection from "../components/ProductsSection";
+import { products } from "../components/Market";
+import BannersCarousel from "../components/BannersCarousel";
+
+const HottestDealsServices = () => {
+    const location = useLocation();
+
+    return (
+        <>
+            <section className="flex items-center gap-4">
+                <Link to={location.pathname.includes("dashboard") ? "/dashboard/marketplace" : "/marketplace"}>
+                    <BsArrowLeft size={30} />
+                </Link>
+                <div>
+                    <h2 className="text-2xl">Explore Our Categories</h2>
+                    <p className="text-xs text-[#000000BF]">
+                        Find what you need, from gadgets to services, all in one place.
+                    </p>
+                </div>
+            </section>
+            <ProductsSection
+                products={products.concat(products).concat(products).concat(products)}
+                grid
+                heading="Hottest Deals Services"
+                useResponsiveCard
+                loadAsyncProducts
+            />
+            <section>
+                <img src="/assets/images/banner.png" alt="Banner" />
+            </section>
+            <BestDealServices />
+            <BannersCarousel />
+        </>
+    );
+};
+
+export default HottestDealsServices;

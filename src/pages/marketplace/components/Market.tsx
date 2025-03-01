@@ -1,9 +1,13 @@
 import { BsArrowLeft } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
 import Hero from "./Hero";
-import { useEffect, useRef, useState } from "react";
 import { Product } from "./ProductCard";
 import ProductsSection from "./ProductsSection";
+import BannersCarousel from "./BannersCarousel";
+import BestDealServices from "../BestDealServices";
+import TrendingProductsAndServices from "./TrendingProductsAndServices";
+import TrendingWomensWear from "./TrendingWomensWear";
+import HottestDeals from "./HottestDeals";
 
 export const products: Product[] = [
     {
@@ -77,10 +81,6 @@ const Market = () => {
     );
 };
 
-const TrendingProductsAndServices = () => {
-    return <ProductsSection heading="Trending Products & Services" products={products} link="trending" />;
-};
-
 const BlackFridaySales = () => {
     return (
         <section className="grid [grid-template-columns:_auto_1fr] items-center gap-6 overflow-auto no-scrollbar">
@@ -89,73 +89,6 @@ const BlackFridaySales = () => {
             </div>
             <ProductsSection products={products} />
         </section>
-    );
-};
-
-const BestDealServices = () => {
-    return (
-        <ProductsSection
-            startComponent={<ProductsSection vertical products={products} />}
-            heading="Best Deal Services"
-            products={products}
-        />
-    );
-};
-
-const TrendingWomensWear = () => {
-    return <ProductsSection heading="Trending Women's Wear" products={products} />;
-};
-
-const HottestDeals = () => {
-    return (
-        <ProductsSection
-            startComponent={<ProductsSection vertical products={products} />}
-            heading="Hottest Deals"
-            products={products}
-        />
-    );
-};
-
-const BannersCarousel = () => {
-    const carouselRef = useRef<HTMLDivElement>(null);
-    const [currentSlide, setCurrentSlide] = useState(1);
-
-    useEffect(() => {
-        const width = carouselRef.current?.clientWidth;
-        carouselRef.current?.scroll({ left: width! * (currentSlide - 1) });
-    }, [currentSlide, carouselRef.current]);
-
-    useEffect(() => {
-        const interval = setInterval(() => setCurrentSlide((prev) => (prev === 3 ? 1 : prev + 1)), 3000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-    return (
-        <div className="space-y-2">
-            <div ref={carouselRef} className="flex overflow-auto no-scrollbar items-center">
-                <img className="w-full h-auto" src="/assets/images/Group 1000004390.png" alt="Banner" />
-                <img className="w-full h-auto" src="/assets/images/Group 1000004393.png" alt="Banner" />
-                <img className="w-full h-auto" src="/assets/images/Group 1000004395.png" alt="Banner" />
-            </div>
-            <div className="grid grid-cols-4 gap-1 w-[108px] mx-auto">
-                <span
-                    className={`${
-                        currentSlide === 1 ? "col-span-2 bg-base" : "bg-[#B3B3B3]"
-                    } h-[3.47px] w-full rounded-full inline-block`}
-                ></span>
-                <span
-                    className={`${
-                        currentSlide === 2 ? "col-span-2 bg-base" : "bg-[#B3B3B3]"
-                    }  h-[3.47px] w-full rounded-full inline-block"`}
-                ></span>
-                <span
-                    className={`${
-                        currentSlide === 3 ? "col-span-2 bg-base" : "bg-[#B3B3B3]"
-                    }  h-[3.47px] w-full rounded-full inline-block"`}
-                ></span>
-            </div>
-        </div>
     );
 };
 

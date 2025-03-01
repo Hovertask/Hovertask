@@ -1,14 +1,19 @@
 import { BsArrowLeft } from "react-icons/bs";
-import ProductsSection from "./ProductsSection";
-import { products } from "./Market";
+import { Link, useLocation } from "react-router-dom";
+import BestDealServices from "../BestDealServices";
+import ProductsSection from "../components/ProductsSection";
+import { products } from "../components/Market";
+import BannersCarousel from "../components/BannersCarousel";
 
 const Trending = () => {
+    const location = useLocation();
+
     return (
         <>
             <section className="flex items-center gap-4">
-                <div>
+                <Link to={location.pathname.includes("dashboard") ? "/dashboard/marketplce" : "/marketplace"}>
                     <BsArrowLeft size={30} />
-                </div>
+                </Link>
                 <div>
                     <h2 className="text-2xl">Explore Our Categories</h2>
                     <p className="text-xs text-[#000000BF]">
@@ -21,7 +26,13 @@ const Trending = () => {
                 grid
                 heading="Trending Products and Services"
                 useResponsiveCard
+                loadAsyncProducts
             />
+            <section>
+                <img src="/assets/images/banner.png" alt="Banner" />
+            </section>
+            <BestDealServices />
+            <BannersCarousel />
         </>
     );
 };
