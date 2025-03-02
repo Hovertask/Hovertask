@@ -44,8 +44,8 @@ const ProductCard = (props: ProductProps) => {
                         </button>
                     </div>
                     <div className="flex gap-6">
-                        <p className="text-[9.4px] text-[#77777A] line-through">{props.price}</p>
-                        <p className="text-[11.28px]">{props.price * (props.discount / 100)}</p>
+                        <p className="text-[9.4px] text-[#77777A] line-through">₦{props.price}</p>
+                        <p className="text-[11.28px]">₦{props.price * (props.discount / 100)}</p>
                     </div>
                     <div className="flex gap-4 items-center">
                         <p className="text-[9.4px] flex items-center">
@@ -61,7 +61,7 @@ const ProductCard = (props: ProductProps) => {
                         Buy Product
                     </button>
                     <Link
-                        to="#"
+                        to={`/marketplace/product/${Math.random().toString()}`}
                         className="flex items-center justify-center rounded-full min-h-[28.92px] min-w-[28.92px] border border-base"
                     >
                         <img src={arrow} alt="Arrow north east" />
