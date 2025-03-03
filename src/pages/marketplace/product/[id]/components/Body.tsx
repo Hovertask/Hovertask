@@ -46,7 +46,7 @@ const SingleProductBody = () => {
                     <img src="/assets/images/demo-avatar.png" width={52} alt="Seller avatar" />
                     <div>
                         <h1 className="text-2xl">Datalite Gadgets</h1>
-                        <Link className="text-base" to="#">
+                        <Link className="text-base" to="/marketplace/seller/id">
                             View Profile
                         </Link>
                     </div>

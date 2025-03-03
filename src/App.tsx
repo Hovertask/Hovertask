@@ -12,7 +12,8 @@ import Trending from "./pages/marketplace/trending";
 import BestDealServices from "./pages/marketplace/best-deal-services";
 import TrendingWomensWear from "./pages/marketplace/trending-womens-wear";
 import HottestDealsServices from "./pages/marketplace/hottest-deals-services";
-import SingleProduct from "./pages/marketplace/[id]";
+import SingleProduct from "./pages/marketplace/product/[id]";
+import SellerProfilePage from "./pages/marketplace/seller/[id]";
 
 const App = () => {
     return (
@@ -34,6 +35,7 @@ const App = () => {
                         <Route path="hottest-deals-services" element={<HottestDealsServices />} />
                     </Route>
                     <Route path="marketplace/product/:id" element={<SingleProduct />} />
+                    <Route path="marketplace/seller/:id" element={<SellerProfilePage />} />
                 </Route>
                 {/* Public routes */}
             </Routes>
