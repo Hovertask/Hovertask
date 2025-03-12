@@ -6,6 +6,9 @@ import type { FieldValues } from "react-hook-form";
 import EarnsphereAccountForm from "./components/EarnsphereAccountForm";
 import OtpForm from "./components/OtpForm";
 import logo from "../../assets/brand-logo.svg";
+import submitForm from "./utils/submitForm";
+import confetti from "../../assets/confetti.gif";
+import { CgClose } from "react-icons/cg";
 
 const slides = [
     {
@@ -30,6 +33,7 @@ const Signup = () => {
     const [currentForm, setCurrentForm] = useState<"personal" | "earnsphere" | "verification">("personal");
     const [aggregateForm, setAggregateForm] = useState<FieldValues>({});
     const multiStepForm = useRef<HTMLDivElement>(null);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     useEffect(() => {
         let slideIndex: number;
@@ -109,6 +113,7 @@ const Signup = () => {
                         ></div>
                     </div>
 
+                    {/* Multi-step form */}
                     <div ref={multiStepForm} className="flex items-start w-full overflow-x-hidden">
                         <PersonalInfoForm
                             onSubmit={(form: FieldValues) => {
@@ -123,8 +128,38 @@ const Signup = () => {
                             }}
                             onBackBtnPress={() => setCurrentForm("personal")}
                         />
-                        <OtpForm onBackBtnPress={() => setCurrentForm("earnsphere")} />
+                        <OtpForm
+                            onSubmit={async (form: FieldValues) => {
+                                setCurrentForm("verification");
+                                await submitForm({ ...aggregateForm, ...form, role_id: "2" }, () =>
+                                    setShowSuccessModal(true)
+                                );
+                            }}
+                            onBackBtnPress={() => setCurrentForm("earnsphere")}
+                        />
                     </div>
+
+                    {/* Success modal */}
+                    {showSuccessModal && (
+                        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-999 flex flex-col items-center justify-center">
+                            <div className="w-full max-w-lg rounded-2xl bg-white shadow-lg p-6 flex flex-col justify-center items-center text-center relative">
+                                <img src={confetti} alt="Confetti" />
+                                <div>
+                                    <h4 className="font-semibold text-2xl">Congratulations</h4>
+                                    <p className="text-zinc-600 font-light">
+                                        You have successfully created your Hovertask account
+                                    </p>
+                                    <a
+                                        target="_blank"
+                                        className="w-fit bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg block mx-auto cursor-pointer font-medium transition-colors duration-200 shadow-lg shadow-blue-600/20 mt-6"
+                                        href="https://hovertask-dashboard.vercel.app/"
+                                    >
+                                        Continue
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
                     <p className="text-center text-gray-600 mt-6">
                         Already have an account?{" "}

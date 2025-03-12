@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import Input from "./Input";
 import { BsArrowLeft } from "react-icons/bs";
+import spinner from "../../../assets/spinner.gif";
 
-const OtpForm = ({ onBackBtnPress }: { onBackBtnPress(): any }) => {
+const OtpForm = ({ onSubmit, onBackBtnPress }: { onSubmit(...props: any[]): any; onBackBtnPress(): any }) => {
     const {
         register,
-        // handleSubmit,
-        formState: { errors }
+        handleSubmit,
+        formState: { errors, isSubmitting }
     } = useForm({ mode: "all" });
 
     return (
@@ -21,7 +22,7 @@ const OtpForm = ({ onBackBtnPress }: { onBackBtnPress(): any }) => {
                 <p className="text-gray-600 mt-2">Enter the code sent to your email address</p>
             </div>
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit((form) => onSubmit(form))} className="space-y-6">
                 <div>
                     <Input
                         label="Enter code"
@@ -39,6 +40,14 @@ const OtpForm = ({ onBackBtnPress }: { onBackBtnPress(): any }) => {
                     Submit and Sign Up
                 </button>
             </form>
+
+            {/* Form submission progress indicator */}
+            {isSubmitting && (
+                <div className="fixed inset-0 bg-white/30 backdrop-blur-sm z-999 flex flex-col items-center justify-center">
+                    <img src={spinner} alt="Spinner" />
+                    <p className="text-2xl">Signing Up Your Account</p>
+                </div>
+            )}
         </div>
     );
 };

@@ -56,7 +56,7 @@ const EarnsphereAccountForm = ({
                             </select>
                         </div>
                         <small className="text-red-500">
-                            {errors["how_you_want_to_use"] && (errors["how_you_want_to_use"].message as string)}
+                            {errors["country"] && (errors["country"].message as string)}
                         </small>
                     </div>
 
@@ -68,7 +68,7 @@ const EarnsphereAccountForm = ({
                             <select
                                 id="currency"
                                 className="w-full p-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none bg-gray-50"
-                                {...register("how_you_want_to_use", {
+                                {...register("currency", {
                                     required: { value: true, message: "Please select an option" }
                                 })}
                             >
@@ -77,7 +77,7 @@ const EarnsphereAccountForm = ({
                             </select>
                         </div>
                         <small className="text-red-500">
-                            {errors["how_you_want_to_use"] && (errors["how_you_want_to_use"].message as string)}
+                            {errors["currency"] && (errors["currency"].message as string)}
                         </small>
                     </div>
                 </div>
