@@ -11,8 +11,13 @@ const submitForm = async (form: FieldValues, callback: () => any) => {
         });
 
         if (response.ok) callback();
-        else return;
-    } catch (error) {}
+        else {
+            const data = await response.json();
+            alert(data.message || "An error occurred. Please try again");
+        }
+    } catch (error: any) {
+        alert(error.message);
+    }
 };
 
 export default submitForm;
