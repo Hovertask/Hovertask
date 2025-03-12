@@ -107,9 +107,9 @@ const PersonalInfoForm = ({ onSubmit }: { onSubmit(...props: any[]): any }) => {
                             })}
                         >
                             <option value="">Select How You Want to Use Hovertask</option>
-                            <option value="earn">Earn Money</option>
-                            <option value="advertise">Advertise Products</option>
-                            <option value="resell">Resell Products</option>
+                            <option value="earner">Earn Money</option>
+                            <option value="advertiser">Advertise Products</option>
+                            <option value="both">Resell Products</option>
                         </select>
                     </div>
                     <small className="text-red-500">

@@ -148,13 +148,12 @@ const Signup = () => {
                                     <p className="text-zinc-600 font-light">
                                         You have successfully created your Hovertask account
                                     </p>
-                                    <a
-                                        target="_blank"
+                                    <Link
                                         className="w-fit bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg block mx-auto cursor-pointer font-medium transition-colors duration-200 shadow-lg shadow-blue-600/20 mt-6"
-                                        href="https://hovertask-dashboard.vercel.app/"
+                                        to="/signin"
                                     >
                                         Continue
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
