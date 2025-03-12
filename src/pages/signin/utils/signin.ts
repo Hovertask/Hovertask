@@ -1,7 +1,7 @@
 import type { FieldValues } from "react-hook-form";
 
-const submitForm = async (form: FieldValues, callback: () => any) => {
-    const API_ENDPOINT = "https://laravel-production-6453.up.railway.app/api/register";
+const signin = async (form: FieldValues, callback: () => any) => {
+    const API_ENDPOINT = "https://laravel-production-6453.up.railway.app/api/login";
 
     try {
         const response = await fetch(API_ENDPOINT, {
@@ -20,4 +20,4 @@ const submitForm = async (form: FieldValues, callback: () => any) => {
     }
 };
 
-export default submitForm;
+export default signin;

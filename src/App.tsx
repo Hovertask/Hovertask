@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/index";
-import PublicLayout from "./layouts/Public";
-import SignIn from "./auth/Signin";
+import Layout from "./layout";
+import SignIn from "./pages/signin";
 import Faq from "./pages/index/components/Faq";
 import About from "./pages/about";
 import ContactUs from "./pages/contact";
@@ -20,7 +20,7 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 {/* Public routes */}
-                <Route path="/" element={<PublicLayout />}>
+                <Route path="/" element={<Layout />}>
                     <Route index element={<LandingPage />} />
                     <Route path="about" element={<About />} />
                     <Route path="contact" element={<ContactUs />} />

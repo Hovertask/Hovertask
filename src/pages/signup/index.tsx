@@ -6,9 +6,8 @@ import type { FieldValues } from "react-hook-form";
 import EarnsphereAccountForm from "./components/EarnsphereAccountForm";
 import OtpForm from "./components/OtpForm";
 import logo from "../../assets/brand-logo.svg";
-import submitForm from "./utils/submitForm";
+import submitForm from "./utils/signup";
 import confetti from "../../assets/confetti.gif";
-import { CgClose } from "react-icons/cg";
 
 const slides = [
     {

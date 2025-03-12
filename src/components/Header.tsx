@@ -1,4 +1,4 @@
-import logo from "../../../assets/brand-logo.svg";
+import logo from "../assets/brand-logo.svg";
 import { RiMenu2Line } from "react-icons/ri";
 import { MdClose } from "react-icons/md";
 import { Dispatch, SetStateAction, useState } from "react";

@@ -1,6 +1,6 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
-import logo from "../../../assets/brand-logo.svg";
+import logo from "../assets/brand-logo.svg";
 
 const Footer = () => {
     return (

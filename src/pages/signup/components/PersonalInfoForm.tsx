@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import Input from "./Input";
+import Input from "../../../components/Input";
 
 const PersonalInfoForm = ({ onSubmit }: { onSubmit(...props: any[]): any }) => {
     const {

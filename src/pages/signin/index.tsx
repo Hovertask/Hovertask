@@ -1,28 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { Link } from "react-router-dom";
-import logo from "../assets/brand-logo.svg";
-
-interface InputProps {
-    label: string;
-    id: string;
-    [key: string]: any;
-}
-
-const Input = ({ label, id, ...props }: InputProps) => (
-    <div className="space-y-1">
-        <label htmlFor={id} className="block text-sm font-medium text-gray-700">
-            {label}
-        </label>
-        <input
-            id={id}
-            {...props}
-            className="w-full p-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none bg-gray-50"
-        />
-    </div>
-);
+import logo from "../../assets/brand-logo.svg";
+import spinner from "../../assets/spinner.gif";
+import Input from "../../components/Input";
+import { useForm } from "react-hook-form";
+import signin from "./utils/signin";
 
 const SignIn = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting }
+    } = useForm({ mode: "all" });
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white p-4 flex items-center justify-center">
             <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-5xl flex flex-col md:flex-row gap-8">
@@ -54,10 +43,48 @@ const SignIn = () => {
                         <p className="text-gray-600 mt-2">Sign in to your Hovertask account</p>
                     </div>
 
-                    <form className="space-y-6">
-                        <Input label="Email Address" id="email" type="email" placeholder="Enter your email" />
+                    <form
+                        onSubmit={handleSubmit((form) =>
+                            signin(form, () => window.location.replace("https://hovertask-dashboard.vercel.app/"))
+                        )}
+                        className="space-y-6"
+                    >
+                        <div>
+                            <Input
+                                label="Email Address"
+                                id="email"
+                                type="email"
+                                {...register("email", {
+                                    required: { value: true, message: "Please enter your email" },
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                        message: "Enter a valid email address"
+                                    }
+                                })}
+                            />
+                            <small className="text-red-500">
+                                {errors["email"] && (errors["email"].message as string)}
+                            </small>
+                        </div>
 
-                        <Input label="Password" id="password" type="password" placeholder="Enter your password" />
+                        <div>
+                            <Input
+                                label="Password"
+                                id="password"
+                                type="password"
+                                {...register("password", {
+                                    required: { value: true, message: "Please enter your password" },
+                                    pattern: {
+                                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                                        message:
+                                            "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character"
+                                    }
+                                })}
+                            />
+                            <small className="text-red-500">
+                                {errors["password"] && (errors["password"].message as string)}
+                            </small>
+                        </div>
 
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
@@ -87,6 +114,14 @@ const SignIn = () => {
                         </Link>
                     </p>
                 </div>
+
+                {/* Form submission progress indicator */}
+                {isSubmitting && (
+                    <div className="fixed inset-0 bg-white/30 backdrop-blur-sm z-999 flex flex-col items-center justify-center">
+                        <img src={spinner} alt="Spinner" />
+                        <p className="text-2xl">Login To Your Account</p>
+                    </div>
+                )}
             </div>
         </div>
     );

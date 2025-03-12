@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import Input from "./Input";
+import Input from "../../../components/Input";
 import { BsArrowLeft } from "react-icons/bs";
 
 const EarnsphereAccountForm = ({
