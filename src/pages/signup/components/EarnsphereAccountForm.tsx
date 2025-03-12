@@ -12,8 +12,11 @@ const EarnsphereAccountForm = ({
     const {
         register,
         handleSubmit,
+        watch,
+        setError,
         formState: { errors }
     } = useForm({ mode: "all" });
+    const passwordConfirmation = watch("password_confirmation");
 
     return (
         <div className="w-full min-w-full max-w-ful">
@@ -27,7 +30,14 @@ const EarnsphereAccountForm = ({
                 <p className="text-gray-600 mt-2">Discover endless opportunities, advertise and resell properties</p>
             </div>
 
-            <form onSubmit={handleSubmit((form) => onSubmit(form))} className="space-y-6">
+            <form
+                onSubmit={handleSubmit((form) => {
+                    if (passwordConfirmation !== form.password)
+                        return setError("password_confirmation", { message: "Passwords do not match" });
+                    onSubmit(form);
+                })}
+                className="space-y-6"
+            >
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <div className="space-y-1">
@@ -91,7 +101,12 @@ const EarnsphereAccountForm = ({
                             id="password"
                             type="password"
                             {...register("password", {
-                                required: { value: true, message: "Please enter your password" }
+                                required: { value: true, message: "Please enter your password" },
+                                pattern: {
+                                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                                    message:
+                                        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character"
+                                }
                             })}
                         />
                         <small className="text-red-500">
@@ -104,12 +119,12 @@ const EarnsphereAccountForm = ({
                             label="Confirm password"
                             id="c-password"
                             type="password"
-                            {...register("c-password", {
+                            {...register("password_confirmation", {
                                 required: { value: true, message: "Please confirm your password" }
                             })}
                         />
                         <small className="text-red-500">
-                            {errors["c-password"] && (errors["c-password"].message as string)}
+                            {errors["password_confirmation"] && (errors["password_confirmation"].message as string)}
                         </small>
                     </div>
                 </div>

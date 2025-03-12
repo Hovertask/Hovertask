@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import PersonalInfoForm from "./components/PersonalInfoForm";
 import type { FieldValues } from "react-hook-form";
 import EarnsphereAccountForm from "./components/EarnsphereAccountForm";
+import OtpForm from "./components/OtpForm";
 
 const slides = [
     {
@@ -114,6 +115,7 @@ const Signup = () => {
                             }}
                             onBackBtnPress={() => setCurrentForm("personal")}
                         />
+                        <OtpForm onBackBtnPress={() => setCurrentForm("earnsphere")} />
                     </div>
 
                     <p className="text-center text-gray-600 mt-6">
