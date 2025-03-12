@@ -5,6 +5,7 @@ import PersonalInfoForm from "./components/PersonalInfoForm";
 import type { FieldValues } from "react-hook-form";
 import EarnsphereAccountForm from "./components/EarnsphereAccountForm";
 import OtpForm from "./components/OtpForm";
+import logo from "../../assets/brand-logo.svg";
 
 const slides = [
     {
@@ -38,7 +39,6 @@ const Signup = () => {
         if (currentForm === "verification") slideIndex = 2;
 
         multiStepForm.current?.scroll({ left: multiStepForm.current?.clientWidth * slideIndex!, behavior: "smooth" });
-        console.log("Running!");
     }, [currentForm]);
 
     return (
@@ -57,9 +57,6 @@ const Signup = () => {
                                     <div
                                         key={index}
                                         className="min-w-full h-full relative transform hover:rotate-0 transition-transform duration-300 overflow-hidden"
-                                        style={{
-                                            transform: currentSlide === index ? "rotate(-2deg)" : "rotate(0deg)"
-                                        }}
                                     >
                                         <img
                                             src={slide.image}
@@ -81,12 +78,14 @@ const Signup = () => {
                         </div>
 
                         {/* Indicators */}
-                        <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center gap-2 transition-transform duration-700">
+                        <div className="absolute bottom-6 left-6 flex items-center gap-2 transition-transform duration-700">
                             {slides.map((_, index) => (
                                 <button
                                     key={index}
                                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                        currentSlide === index ? "w-6 bg-blue-500" : "bg-white/50 hover:bg-white/75"
+                                        currentSlide === index
+                                            ? "scale-150 bg-blue-500"
+                                            : "bg-white/50 hover:bg-white/75"
                                     }`}
                                 />
                             ))}
@@ -97,7 +96,7 @@ const Signup = () => {
                 {/* Right Section - Form */}
                 <div className="w-full md:w-1/2 flex flex-col">
                     <div className="pb-6 mb-6">
-                        <img src="/api/placeholder/120/32" alt="Hovertask Logo" className="h-8" />
+                        <img src={logo} alt="Hovertask Logo" className="h-8" />
                     </div>
 
                     <div className="h-0.5 bg-slate-300 mb-6">
