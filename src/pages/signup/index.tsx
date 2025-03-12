@@ -61,7 +61,6 @@ const Signup = () => {
                                             transform: currentSlide === index ? "rotate(-2deg)" : "rotate(0deg)"
                                         }}
                                     >
-                                        {/* <div className="relative h-[500px] rounded-2xl overflow-hidden transform hover:rotate-0 transition-transform duration-300 rotate-[-2deg]" */}
                                         <img
                                             src={slide.image}
                                             alt={slide.title}
@@ -97,8 +96,18 @@ const Signup = () => {
 
                 {/* Right Section - Form */}
                 <div className="w-full md:w-1/2 flex flex-col">
-                    <div className="pb-6 mb-6 border-b border-gray-200">
+                    <div className="pb-6 mb-6">
                         <img src="/api/placeholder/120/32" alt="Hovertask Logo" className="h-8" />
+                    </div>
+
+                    <div className="h-0.5 bg-slate-300 mb-6">
+                        <div
+                            style={{
+                                marginLeft:
+                                    currentForm === "personal" ? 0 : currentForm === "earnsphere" ? "33.3%" : "66.6%"
+                            }}
+                            className="w-1/3 h-full bg-blue-600 transition-all"
+                        ></div>
                     </div>
 
                     <div ref={multiStepForm} className="flex items-start w-full overflow-x-hidden">
