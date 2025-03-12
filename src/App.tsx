@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/index";
 import PublicLayout from "./layouts/Public";
-import Signup from "./auth/Signup";
 import SignIn from "./auth/Signin";
 import Faq from "./pages/index/components/Faq";
 import About from "./pages/about";
@@ -14,6 +13,7 @@ import TrendingWomensWear from "./pages/marketplace/trending-womens-wear";
 import HottestDealsServices from "./pages/marketplace/hottest-deals-services";
 import SingleProduct from "./pages/marketplace/product/[id]";
 import SellerProfilePage from "./pages/marketplace/seller/[id]";
+import Signup from "./pages/signup";
 
 const App = () => {
     return (
