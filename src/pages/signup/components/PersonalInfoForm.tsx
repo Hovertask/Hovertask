@@ -23,7 +23,8 @@ const PersonalInfoForm = ({ onSubmit }: { onSubmit(...props: any[]): any }) => {
                             id="firstName"
                             type="text"
                             {...register("fname", {
-                                required: { value: true, message: "Please enter your first name" }
+                                required: { value: true, message: "Please enter your first name" },
+                                pattern: { value: /^[A-Za-z'-]{2,}$/, message: "Enter a real name" }
                             })}
                         />
                         <small className="text-red-500">{errors["fname"] && (errors["fname"].message as string)}</small>
@@ -34,7 +35,8 @@ const PersonalInfoForm = ({ onSubmit }: { onSubmit(...props: any[]): any }) => {
                             id="lastName"
                             type="text"
                             {...register("lname", {
-                                required: { value: true, message: "Please enter your first name" }
+                                required: { value: true, message: "Please enter your last name" },
+                                pattern: { value: /^[A-Za-z'-]{2,}$/, message: "Enter a real name" }
                             })}
                         />
                         <small className="text-red-500">{errors["lname"] && (errors["lname"].message as string)}</small>
@@ -47,7 +49,11 @@ const PersonalInfoForm = ({ onSubmit }: { onSubmit(...props: any[]): any }) => {
                         id="email"
                         type="email"
                         {...register("email", {
-                            required: { value: true, message: "Please enter your email" }
+                            required: { value: true, message: "Please enter your email" },
+                            pattern: {
+                                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                message: "Enter a valid email address"
+                            }
                         })}
                     />
                     <small className="text-red-500">{errors["email"] && (errors["email"].message as string)}</small>
@@ -60,7 +66,12 @@ const PersonalInfoForm = ({ onSubmit }: { onSubmit(...props: any[]): any }) => {
                             id="referrer"
                             type="text"
                             placeholder="Optional"
-                            {...register("referrer", {})}
+                            {...register("referrer", {
+                                pattern: {
+                                    value: /^[a-zA-Z0-9_]{3,20}$/,
+                                    message: "Username should be between 3 and 20 characters without spacing"
+                                }
+                            })}
                         />
                         <small className="text-red-500">{errors["email"] && (errors["email"].message as string)}</small>
                     </div>
@@ -70,7 +81,11 @@ const PersonalInfoForm = ({ onSubmit }: { onSubmit(...props: any[]): any }) => {
                             id="username"
                             type="text"
                             {...register("username", {
-                                required: { value: true, message: "Please enter your desired username" }
+                                required: { value: true, message: "Please enter your desired username" },
+                                pattern: {
+                                    value: /^[a-zA-Z0-9_]{3,20}$/,
+                                    message: "Username should be between 3 and 20 characters without spacing"
+                                }
                             })}
                         />
                         <small className="text-red-500">
