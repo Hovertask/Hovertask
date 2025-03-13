@@ -1,6 +1,6 @@
 import type { FieldValues } from "react-hook-form";
 
-const signin = async (form: FieldValues, callback: () => any) => {
+const signin = async (form: FieldValues) => {
     const API_ENDPOINT = "https://laravel-production-6453.up.railway.app/api/login";
 
     try {
@@ -9,12 +9,13 @@ const signin = async (form: FieldValues, callback: () => any) => {
             body: JSON.stringify(form),
             headers: { "Content-Type": "application/json" }
         });
+        const data = await response.json();
 
-        if (response.ok) callback();
-        else {
-            const data = await response.json();
-            alert(data.message || "An error occurred. Please try again");
-        }
+        if (response.ok)
+            window
+                .location
+                .assign(`https://hovertask-dashboard.vercel.app/?user=${encodeURIComponent(btoa(JSON.stringify(data)))}`);
+        else  alert(data.message || "An error occurred. Please try again");
     } catch (error: any) {
         alert(error.message);
     }

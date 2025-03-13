@@ -44,9 +44,7 @@ const SignIn = () => {
                     </div>
 
                     <form
-                        onSubmit={handleSubmit((form) =>
-                            signin(form, () => window.location.replace("https://hovertask-dashboard.vercel.app/"))
-                        )}
+                        onSubmit={handleSubmit((form) => signin(form))}
                         className="space-y-6"
                     >
                         <div>
