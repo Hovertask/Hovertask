@@ -1,7 +1,7 @@
 import type { FieldValues } from "react-hook-form";
 
 const signin = async (form: FieldValues) => {
-    const API_ENDPOINT = "https://laravel-production-6453.up.railway.app/api/login";
+    const API_ENDPOINT = "http://149.28.44.161/api/v1/api/login";
 
     try {
         const response = await fetch(API_ENDPOINT, {
