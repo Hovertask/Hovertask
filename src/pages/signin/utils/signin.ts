@@ -14,7 +14,7 @@ const signin = async (form: FieldValues) => {
         if (response.ok)
             window
                 .location
-                .assign(`https://hovertask-dashboard.vercel.app/?user=${encodeURIComponent(btoa(JSON.stringify(data)))}`);
+                .assign(`https://hovertask-dashboard.vercel.app/?token=${data.token}`);
         else  alert(data.message || "An error occurred. Please try again");
     } catch (error: any) {
         alert(error.message);
