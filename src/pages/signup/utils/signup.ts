@@ -1,7 +1,7 @@
 import type { FieldValues } from "react-hook-form";
 
 const signup = async (form: FieldValues, callback: () => any) => {
-    const API_ENDPOINT = "https://backend.hovertask.com/api/v1/api/register";
+    const API_ENDPOINT = "https://backend.hovertask.com/api/v1/register";
 
     try {
         const response = await fetch(API_ENDPOINT, {
