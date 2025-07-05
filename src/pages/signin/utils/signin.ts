@@ -1,4 +1,5 @@
 import type { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 
 const signin = async (form: FieldValues) => {
     const API_ENDPOINT = "https://backend.hovertask.com/api/v1/login";
@@ -15,9 +16,9 @@ const signin = async (form: FieldValues) => {
             window
                 .location
                 .assign(`https://hovertask-dashboard.vercel.app/?token=${data.token}`);
-        else  alert(data.message || "An error occurred. Please try again");
+        else  toast.error(data.message || "An error occurred. Please try again");
     } catch (error: any) {
-        alert(error.message);
+        toast.error(error.message);
     }
 };
 

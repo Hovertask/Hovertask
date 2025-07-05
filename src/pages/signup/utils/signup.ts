@@ -1,4 +1,5 @@
 import type { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 
 const signup = async (form: FieldValues, callback: () => any) => {
     const API_ENDPOINT = "https://backend.hovertask.com/api/v1/register";
@@ -13,10 +14,10 @@ const signup = async (form: FieldValues, callback: () => any) => {
         if (response.ok) callback();
         else {
             const data = await response.json();
-            alert(data.message || "An error occurred. Please try again");
+            toast.error(data.message || "An error occurred. Please try again");
         }
     } catch (error: any) {
-        alert(error.message);
+        toast.error(error.message);
     }
 };
 
