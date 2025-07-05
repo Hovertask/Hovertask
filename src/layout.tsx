@@ -9,7 +9,7 @@ const PublicLayout = () => {
             <Header />
             <Outlet />
             <Footer />
-            <Toaster richColors />
+            <Toaster position="top-center" richColors />
         </>
     );
 };
