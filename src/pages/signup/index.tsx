@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/brand-logo.svg";
 import confetti from "../../assets/confetti.gif";
 import EarnsphereAccountForm from "./components/EarnsphereAccountForm";
-import OtpForm from "./components/OtpForm";
 import PersonalInfoForm from "./components/PersonalInfoForm";
 import useSlider from "./hooks/useSlider";
-import submitForm from "./utils/signup";
+import signup from "./utils/signup";
 
 const slides = [
 	{
@@ -40,13 +39,13 @@ const Signup = () => {
 	const [showSuccessModal, setShowSuccessModal] = useState(false);
 
 	useEffect(() => {
-		let slideIndex: number;
+		let slideIndex = 0;
 
 		if (currentForm === "personal") slideIndex = 0;
 		if (currentForm === "earnsphere") slideIndex = 1;
 
 		multiStepForm.current?.scroll({
-			left: multiStepForm.current?.clientWidth * slideIndex!,
+			left: multiStepForm.current?.clientWidth * slideIndex,
 			behavior: "smooth",
 		});
 	}, [currentForm]);
@@ -114,15 +113,10 @@ const Signup = () => {
 					<div className="h-0.5 bg-slate-300 mb-6">
 						<div
 							style={{
-								marginLeft:
-									currentForm === "personal"
-										? 0
-										: currentForm === "earnsphere"
-											? "33.3%"
-											: "66.6%",
+								marginLeft: currentForm === "personal" ? 0 : "50%",
 							}}
-							className="w-1/3 h-full bg-blue-600 transition-all"
-						></div>
+							className="w-1/2 h-full bg-blue-600 transition-all"
+						/>
 					</div>
 
 					{/* Multi-step form */}
@@ -138,8 +132,9 @@ const Signup = () => {
 						/>
 						<EarnsphereAccountForm
 							onSubmit={(form: FieldValues) => {
-								setCurrentForm("verification");
-								setAggregateForm({ ...aggregateForm, ...form });
+								signup({ ...aggregateForm, ...form }, () =>
+									setShowSuccessModal(true),
+								);
 							}}
 							onBackBtnPress={() => setCurrentForm("personal")}
 						/>

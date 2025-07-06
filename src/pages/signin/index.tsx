@@ -1,8 +1,8 @@
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import logo from "../../assets/brand-logo.svg";
 import spinner from "../../assets/spinner.gif";
 import Input from "../../components/Input";
-import { useForm } from "react-hook-form";
 import signin from "./utils/signin";
 
 const SignIn = () => {
@@ -65,7 +65,7 @@ const SignIn = () => {
 								})}
 							/>
 							<small className="text-red-500">
-								{errors["email"] && (errors["email"].message as string)}
+								{errors.email && (errors.email.message as string)}
 							</small>
 						</div>
 
@@ -86,7 +86,7 @@ const SignIn = () => {
 								})}
 							/>
 							<small className="text-red-500">
-								{errors["password"] && (errors["password"].message as string)}
+								{errors.password && (errors.password.message as string)}
 							</small>
 						</div>
 
@@ -101,12 +101,18 @@ const SignIn = () => {
 									Remember me
 								</label>
 							</div>
-							<a href="#" className="text-sm text-blue-600 hover:text-blue-700">
+							<a
+								href="/recover-password"
+								className="text-sm text-blue-600 hover:text-blue-700"
+							>
 								Forgot password?
 							</a>
 						</div>
 
-						<button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition-colors duration-200 shadow-lg shadow-blue-600/20">
+						<button
+							type="button"
+							className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition-colors duration-200 shadow-lg shadow-blue-600/20"
+						>
 							Sign In
 						</button>
 					</form>
