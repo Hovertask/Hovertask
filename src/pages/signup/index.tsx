@@ -16,7 +16,7 @@ const slides = [
 			"Discover endless opportunities to earn, advertise, and resell products.",
 	},
 	{
-		image: '/assets/images/frackels.webp"',
+		image: "/assets/images/frackels.webp",
 		title: "Boost your brand visibility",
 		description:
 			"Advertise on our marketplace or levergae social media to grow your business.",
@@ -90,9 +90,10 @@ const Signup = () => {
 
 						{/* Indicators */}
 						<div className="absolute bottom-6 left-6 flex items-center gap-2 transition-transform duration-700">
-							{slides.map((_, index) => (
+							{slides.map((img, index) => (
 								<button
-									key={index}
+									type="button"
+									key={img.title}
 									className={`w-2 h-2 rounded-full transition-all duration-300 ${
 										currentSlide === index
 											? "scale-150 bg-blue-500"
@@ -131,8 +132,8 @@ const Signup = () => {
 							}}
 						/>
 						<EarnsphereAccountForm
-							onSubmit={(form: FieldValues) => {
-								signup({ ...aggregateForm, ...form }, () =>
+							onSubmit={async (form: FieldValues) => {
+								await signup({ ...aggregateForm, ...form }, () =>
 									setShowSuccessModal(true),
 								);
 							}}

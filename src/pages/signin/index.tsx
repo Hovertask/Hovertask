@@ -48,7 +48,7 @@ const SignIn = () => {
 					</div>
 
 					<form
-						onSubmit={handleSubmit((form) => signin(form))}
+						onSubmit={handleSubmit(async (form) => await signin(form))}
 						className="space-y-6"
 					>
 						<div>
@@ -110,7 +110,7 @@ const SignIn = () => {
 						</div>
 
 						<button
-							type="button"
+							type="submit"
 							className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition-colors duration-200 shadow-lg shadow-blue-600/20"
 						>
 							Sign In
