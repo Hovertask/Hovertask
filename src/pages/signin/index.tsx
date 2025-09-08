@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import logo from "../../assets/brand-logo.svg";
 import spinner from "../../assets/spinner.gif";
 import Input from "../../components/Input";
 import signin from "./utils/signin";
+import RecoverPasswordModal from "../../components/RecoverPasswordModal";
 
 const SignIn = () => {
 	const {
@@ -11,6 +13,8 @@ const SignIn = () => {
 		handleSubmit,
 		formState: { errors, isSubmitting },
 	} = useForm({ mode: "all" });
+
+	const [modalOpen, setModalOpen] = useState(false);
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-blue-50 to-white p-4 flex items-center justify-center">
@@ -101,12 +105,14 @@ const SignIn = () => {
 									Remember me
 								</label>
 							</div>
-							<a
-								href="/recover-password"
-								className="text-sm text-blue-600 hover:text-blue-700"
+							<button
+								type="button"
+								onClick={() => setModalOpen(true)}
+								className="text-sm text-blue-600 hover:text-blue-700 bg-none border-none p-0 underline cursor-pointer"
+								style={{ background: "none" }}
 							>
-								Forgot password?
-							</a>
+								Forgot Password?
+							</button>
 						</div>
 
 						<button
@@ -136,6 +142,11 @@ const SignIn = () => {
 					</div>
 				)}
 			</div>
+
+			<RecoverPasswordModal
+				isOpen={modalOpen}
+				onClose={() => setModalOpen(false)}
+			/>
 		</div>
 	);
 };
