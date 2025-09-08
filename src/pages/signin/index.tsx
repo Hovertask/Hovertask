@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
 import logo from "../../assets/brand-logo.svg";
 import spinner from "../../assets/spinner.gif";
 import Input from "../../components/Input";
