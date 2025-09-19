@@ -5,6 +5,7 @@ import logo from "../../assets/brand-logo.svg";
 import confetti from "../../assets/confetti.gif";
 import EarnsphereAccountForm from "./components/EarnsphereAccountForm";
 import PersonalInfoForm from "./components/PersonalInfoForm";
+import EmailVerificationForm from "./components/EmailVerificationForm";
 import useSlider from "./hooks/useSlider";
 import signup from "./utils/signup";
 
@@ -36,19 +37,9 @@ const Signup = () => {
 	>("personal");
 	const [aggregateForm, setAggregateForm] = useState<FieldValues>({});
 	const multiStepForm = useRef<HTMLDivElement>(null);
-	const [showSuccessModal, setShowSuccessModal] = useState(false);
+	const [verificationSuccess, setVerificationSuccess] = useState(false);
 
-	useEffect(() => {
-		let slideIndex = 0;
-
-		if (currentForm === "personal") slideIndex = 0;
-		if (currentForm === "earnsphere") slideIndex = 1;
-
-		multiStepForm.current?.scroll({
-			left: multiStepForm.current?.clientWidth * slideIndex,
-			behavior: "smooth",
-		});
-	}, [currentForm]);
+	// Remove scroll logic since only one form is rendered at a time
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-blue-50 to-white p-4 flex items-center justify-center">
@@ -120,36 +111,45 @@ const Signup = () => {
 						/>
 					</div>
 
-					{/* Multi-step form */}
-					<div
-						ref={multiStepForm}
-						className="flex items-start w-full overflow-x-hidden"
-					>
-						<PersonalInfoForm
-							onSubmit={(form: FieldValues) => {
-								setCurrentForm("earnsphere");
-								setAggregateForm({ ...aggregateForm, ...form });
-							}}
-						/>
-						<EarnsphereAccountForm
-							onSubmit={async (form: FieldValues) => {
-								await signup({ ...aggregateForm, ...form }, () =>
-									setShowSuccessModal(true),
-								);
-							}}
-							onBackBtnPress={() => setCurrentForm("personal")}
-						/>
+					{/* Multi-step form - only render current step */}
+					<div ref={multiStepForm} className="w-full">
+						{currentForm === "personal" && (
+							<PersonalInfoForm
+								onSubmit={(form: FieldValues) => {
+									setCurrentForm("earnsphere");
+									setAggregateForm({ ...aggregateForm, ...form });
+								}}
+							/>
+						)}
+						{currentForm === "earnsphere" && (
+							<EarnsphereAccountForm
+								onSubmit={async (form: FieldValues) => {
+									await signup({ ...aggregateForm, ...form }, () =>
+										setCurrentForm("verification")
+									);
+								}}
+								onBackBtnPress={() => setCurrentForm("personal")}
+							/>
+						)}
+						{currentForm === "verification" && (
+							<EmailVerificationForm
+								email={aggregateForm.email}
+								onSubmit={async (code: string) => {
+									setVerificationSuccess(true);
+								}}
+							/>
+						)}
 					</div>
 
-					{/* Success modal */}
-					{showSuccessModal && (
+					{/* Success modal after verification */}
+					{verificationSuccess && (
 						<div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-999 flex flex-col items-center justify-center">
 							<div className="w-full max-w-lg rounded-2xl bg-white shadow-lg p-6 flex flex-col justify-center items-center text-center relative">
 								<img src={confetti} alt="Confetti" />
 								<div>
 									<h4 className="font-semibold text-2xl">Congratulations</h4>
 									<p className="text-zinc-600 font-light">
-										You have successfully created your Hovertask account
+										Your email has been verified and your Hovertask account is ready!
 									</p>
 									<Link
 										className="w-fit bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg block mx-auto cursor-pointer font-medium transition-colors duration-200 shadow-lg shadow-blue-600/20 mt-6"
