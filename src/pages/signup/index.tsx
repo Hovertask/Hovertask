@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { FieldValues } from "react-hook-form";
 import { Link } from "react-router-dom";
 import logo from "../../assets/brand-logo.svg";
@@ -134,7 +134,7 @@ const Signup = () => {
 						{currentForm === "verification" && (
 							<EmailVerificationForm
 								email={aggregateForm.email}
-								onSubmit={async (code: string) => {
+								onSubmit={async () => {
 									setVerificationSuccess(true);
 								}}
 							/>
