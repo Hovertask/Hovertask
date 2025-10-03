@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Input from "../../../components/Input";
 
 const PersonalInfoForm = ({
@@ -7,8 +9,20 @@ const PersonalInfoForm = ({
 	const {
 		register,
 		handleSubmit,
+		setValue,
 		formState: { errors },
 	} = useForm({ mode: "all" });
+
+	const location = useLocation();
+
+	useEffect(() => {
+		// Check for ?ref=CODE in URL and set referral_code
+		const params = new URLSearchParams(location.search);
+		const referralCode = params.get("ref");
+		if (referralCode) {
+			setValue("referral_code", referralCode);
+		}
+	}, [location.search, setValue]);
 
 	return (
 		<div className="w-full min-w-full max-w-full">
@@ -93,7 +107,7 @@ const PersonalInfoForm = ({
 							id="referrer"
 							type="text"
 							placeholder="Optional"
-							{...register("referrer", {
+							{...register("referal_username", {
 								pattern: {
 									value: /^[a-zA-Z0-9_]{3,20}$/,
 									message:
@@ -102,7 +116,8 @@ const PersonalInfoForm = ({
 							})}
 						/>
 						<small className="text-red-500">
-							{errors.email && (errors.email.message as string)}
+							{errors.referal_username &&
+								(errors.referal_username.message as string)}
 						</small>
 					</div>
 					<div>
@@ -128,6 +143,9 @@ const PersonalInfoForm = ({
 					</div>
 				</div>
 
+				{/* hidden field for referral_code (autofilled from URL) */}
+				<input type="hidden" {...register("referral_code")} />
+
 				<div>
 					<div className="space-y-1">
 						<label
@@ -150,8 +168,7 @@ const PersonalInfoForm = ({
 						</select>
 					</div>
 					<small className="text-red-500">
-						{errors.how_you_want_to_use &&
-							(errors.how_you_want_to_use.message as string)}
+						{errors.role_id && (errors.role_id.message as string)}
 					</small>
 				</div>
 
