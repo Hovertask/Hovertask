@@ -10,14 +10,22 @@ const signin = async (form: FieldValues) => {
 			body: JSON.stringify(form),
 			headers: { "Content-Type": "application/json" },
 		});
+
 		const data = await response.json();
 
-		if (response.ok)
+		if (response.ok) {
+			// ✅ Save token in localStorage
+			localStorage.setItem("auth_token", data.token);
+
+			// ✅ Redirect user to dashboard or app
 			window.location.assign(`https://app.hovertask.com/?token=${data.token}`);
-		else toast.error(data.message || "An error occurred. Please try again");
+		} else {
+			// Invalid login
+			toast.error(data.message || "Invalid credentials, please try again.");
+		}
 	} catch (error: unknown) {
 		if (error instanceof Error) toast.error(error.message);
-		else toast.error("An unknown error ocurred");
+		else toast.error("An unknown error occurred");
 	}
 };
 

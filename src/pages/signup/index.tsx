@@ -11,7 +11,7 @@ import signup from "./utils/signup";
 
 const slides = [
 	{
-		image: "/assets/images/Rectangle 39322.png",
+		image: "/assets/images/newgilr.jpeg",
 		title: "Unlock Your Earning Potential",
 		description:
 			"Discover endless opportunities to earn, advertise, and resell products.",

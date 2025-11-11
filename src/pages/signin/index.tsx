@@ -23,7 +23,7 @@ const SignIn = () => {
 				<div className="w-full md:w-1/2">
 					<div className="relative h-[500px] rounded-2xl overflow-hidden transform hover:rotate-0 transition-transform duration-300 rotate-[-2deg]">
 						<img
-							src="/assets/images/Rectangle 39322.png"
+							src="/assets/images/newgilr.jpeg"
 							alt="Welcome Back"
 							className="w-full h-full object-cover"
 						/>
