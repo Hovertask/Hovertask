@@ -1,6 +1,7 @@
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import logo from "../assets/brand-logo.svg";
+import { FaYoutube } from "react-icons/fa6";
 
 const Footer = () => {
     return (
@@ -67,19 +68,25 @@ const Footer = () => {
                             &copy; {new Date().getFullYear()} Hovertask. All rights reserved. Made by Aloyande Nurudeen
                         </p>
                         <div className="flex space-x-6 text-2xl">
-                            <a href="#" className="hover:text-white transition">
+                            <a href=" https://web.facebook.com/hovertaskng" className="hover:text-white transition">
                                 <FaFacebook />
                             </a>
-                            <a href="#" className="hover:text-white transition">
+                            <a href="https://x.com/hovertaskng" className="hover:text-white transition">
                                 <FaTwitter />
                             </a>
-                            <a href="#" className="hover:text-white transition">
+                            <a href="https://www.instagram.com/hovertaskng/" className="hover:text-white transition">
                                 <FaInstagram />
                             </a>
-                            <a href="#" className="hover:text-white transition">
+                            <a href="https://www.linkedin.com/company/hovertask-ng " className="hover:text-white transition">
                                 <FaLinkedin />
                             </a>
-                            <a href="#" className="hover:text-white transition">
+                            <a href=" https://www.tiktok.com/@hovertaskng" className="hover:text-white transition">
+                                <FaTiktok />
+                            </a>
+                            <a href="https://www.youtube.com/@Hovertaskng" className="hover:text-white transition">
+                                <FaYoutube />
+                            </a>
+                            <a href="mailto:hovertask@gmail.com" className="hover:text-white transition">
                                 <FiMail />
                             </a>
                         </div>
