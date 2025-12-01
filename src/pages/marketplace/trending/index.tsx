@@ -2,12 +2,12 @@ import { BsArrowLeft } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import BestDealServices from "../BestDealServices";
 import ProductsSection from "../components/ProductsSection";
-import type { NormalizedProduct } from "../../../types/NormalizedProduct";
+import useFetchProducts from "../../../hooks/useFetchProducts";
 import BannersCarousel from "../components/BannersCarousel";
 
 const Trending = () => {
     const location = useLocation();
-    const { products, loading }: { products: NormalizedProduct[]; loading: boolean } = { products: [], loading: false }; // Placeholder for products data and loading state
+    const { products, loading } = useFetchProducts(); // already normalized
    
 
     return (
