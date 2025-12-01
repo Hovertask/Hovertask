@@ -104,7 +104,7 @@ const SingleProductBody = () => {
       setLoadingContact(true);
 
       const response = await fetch(
-        `https://backend.hovertask.com/api/track-conversion/${product?.id}?reseller=${resellerCodeFromURL ?? ""}`,
+        `https://backend.hovertask.com/api/landing-page-contact-seller/${product?.id}?reseller=${resellerCodeFromURL ?? ""}`,
         {
           method: "GET",
           credentials: "include",
