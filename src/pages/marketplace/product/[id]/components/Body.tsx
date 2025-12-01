@@ -127,7 +127,7 @@ const SingleProductBody = () => {
 
     const cached = productCache.get(id);
 
-    // use fresh cache immediately
+    // fresh cache → no loading
     if (cached && Date.now() - cached.ts < STALE_MS) {
       setProduct(cached.data);
       setLoading(false);
@@ -135,7 +135,7 @@ const SingleProductBody = () => {
       return;
     }
 
-    // stale cache -> show stale then revalidate
+    // stale cache → show stale + revalidate
     if (cached) {
       setProduct(cached.data);
       setLoading(false);
@@ -151,22 +151,33 @@ const SingleProductBody = () => {
           setError(null);
         }
 
-        const res = await fetch(`https://backend.hovertask.com/api/show-product-landing-page/${id}`, {
-          method: "GET",
-          headers: { Accept: "application/json", "Content-Type": "application/json" },
-          signal: sig,
-        });
+        const res = await fetch(
+          `https://backend.hovertask.com/api/show-product-landing-page/${id}`,
+          {
+            method: "GET",
+            headers: { Accept: "application/json", "Content-Type": "application/json" },
+            signal: sig,
+          }
+        );
 
         if (!res.ok) {
           if (res.status === 404) throw new Error("Product not found");
-          throw new Error(`Failed to load product`);
+          throw new Error("Failed to load product");
         }
 
-        const json: ProductApiResponse = await res.json();
-        productCache.set(id ?? "", { ts: Date.now(), data: json });
+        const raw = await res.json();
+
+        // ✅ extract actual product object
+        if (!raw.product) {
+          throw new Error("Invalid API response: missing product");
+        }
+
+        const extractedProduct: ProductApiResponse = raw.product;
+
+        productCache.set(id ?? "", { ts: Date.now(), data: extractedProduct });
 
         if (!aborted) {
-          setProduct(json);
+          setProduct(extractedProduct);
           setError(null);
         }
       } catch (err: any) {
@@ -240,9 +251,7 @@ const SingleProductBody = () => {
     return (
       <div className="p-8">
         <p className="text-red-500">Error: {error}</p>
-        <Link to="/marketplace" className="text-blue-600">
-          Back to marketplace
-        </Link>
+        <Link to="/marketplace" className="text-blue-600">Back to marketplace</Link>
       </div>
     );
   }
@@ -261,7 +270,6 @@ const SingleProductBody = () => {
 
   return (
     <div className="bg-white shadow px-4 py-8 space-y-8 overflow-hidden">
-      
       {/* HEADER */}
       <header className="flex gap-4">
         <Link to={location.pathname.includes("dashboard") ? "/dashboard/marketplace" : "/marketplace"}>
@@ -272,9 +280,7 @@ const SingleProductBody = () => {
           <img src="/assets/images/demo-avatar.png" width={52} alt="Seller avatar" className="rounded-full" />
           <div>
             <h1 className="text-2xl">Seller</h1>
-            <Link className="text-base" to={`/marketplace/seller/${product.user_id}`}>
-              View Profile
-            </Link>
+            <Link className="text-base" to={`/marketplace/seller/${product.user_id}`}>View Profile</Link>
           </div>
         </div>
       </header>
@@ -303,10 +309,7 @@ const SingleProductBody = () => {
           </>
         )}
 
-        <div
-          ref={imageCarouselRef}
-          className="max-w-full overflow-auto snap-mandatory snap-x flex no-scrollbar"
-        >
+        <div ref={imageCarouselRef} className="max-w-full overflow-auto snap-mandatory snap-x flex no-scrollbar">
           {images.map((img, i) => (
             <div key={i} className="snap-center w-full min-w-full">
               <img src={img} alt="" className="max-w-[90%] mx-auto block" />
@@ -314,7 +317,6 @@ const SingleProductBody = () => {
           ))}
         </div>
 
-        {/* THUMBNAILS */}
         <div className="flex overflow-auto justify-end gap-4">
           {images.map((img, i) => (
             <button key={i} onClick={() => setActiveImageIndex(i)} className="cursor-pointer">
@@ -336,7 +338,7 @@ const SingleProductBody = () => {
             <Info heading="Location" value={product.location ?? "N/A"} />
           </div>
 
-          {/* PRICE AREA */}
+          {/* PRICE */}
           <div className="col-span-2 flex flex-col justify-between space-y-3">
             <div className="relative before:absolute before:w-full before:h-full before:bg-gradient-to-b before:from-[#4B70F5] before:to-[#2C418F00] before:rounded-lg before:-rotate-6 before:z-0 before:opacity-20">
               {discount > 0 && (
@@ -369,7 +371,7 @@ const SingleProductBody = () => {
           </div>
         </div>
 
-        {/* ACTION BUTTONS */}
+        {/* ACTION BUTTON */}
         <div className="flex gap-6 flex-wrap">
           <button
             onClick={handleContactSeller}
