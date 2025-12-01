@@ -40,7 +40,7 @@ const useFetchProducts = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const API_ENDPOINT = "https://backend.hovertask.com/api/landing-page-products";
+    const API_ENDPOINT = "https://backend.hovertask.com/api/landing-page-products/all";
 
     useEffect(() => {
         const fetchProducts = async () => {
