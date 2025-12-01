@@ -60,6 +60,9 @@ const productImagesFromAPI = (p: ProductApiResponse) =>
     .map((pi) => pi.file_path)
     .filter(Boolean) as string[];
 
+
+  const resellerCodeFromURL = new URLSearchParams(window.location.search).get("reseller");
+
 // --- Component ---
 const SingleProductBody = () => {
   const { id } = useParams<{ id: string }>();
@@ -68,11 +71,75 @@ const SingleProductBody = () => {
   const [product, setProduct] = useState<ProductApiResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+   const [loadingContact, setLoadingContact] = useState<boolean>(false);
+
+  const abortContactRef = useRef<AbortController | null>(null);
 
   // carousel state
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const imageCarouselRef = useRef<HTMLDivElement | null>(null);
   const timeoutRef = useRef<number | null>(null);
+
+
+
+   // ------------------------------------------------------------
+// CONTACT SELLER logic added + optimized scalable implementation
+// ------------------------------------------------------------
+
+//const resellerCodeFromURL = new URLSearchParams(window.location.search).get("reseller");
+
+
+  // ----------------------------
+  // 🔥 Contact Seller (Scalable)
+  // ----------------------------
+  const handleContactSeller = async () => {
+    try {
+      // cancel previous contact request if user taps twice
+      if (abortContactRef.current) {
+        abortContactRef.current.abort();
+      }
+
+      const controller = new AbortController();
+      abortContactRef.current = controller;
+      setLoadingContact(true);
+
+      const response = await fetch(
+        `https://backend.hovertask.com/api/track-conversion/${product?.id}?reseller=${resellerCodeFromURL ?? ""}`,
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          signal: controller.signal,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to track conversion");
+      }
+
+      const data = await response.json();
+
+      if (data?.whatsapp_url) {
+        // Redirect instantly
+        window.location.href = data.whatsapp_url;
+      } else {
+        console.error("WhatsApp link missing");
+      }
+    } catch (error: any) {
+      if (error.name !== "AbortError") {
+        console.error("Conversion tracking failed", error);
+      }
+    } finally {
+      setLoadingContact(false);
+    }
+  };
+
+
+
+
 
   // fetch product with simple stale-while-revalidate behavior + abort support
   useEffect(() => {
@@ -101,6 +168,8 @@ const SingleProductBody = () => {
       // no cache -> fetch and populate UI
       fetchAndCache(true);
     }
+
+    
 
     async function fetchAndCache(showLoading: boolean) {
       try {
@@ -367,12 +436,17 @@ const SingleProductBody = () => {
           </div>
 
           <div className="flex gap-6 flex-wrap">
-            <button className="px-6 py-4 cursor-pointer active:scale-90 transition-transform bg-base rounded-[20.01px] text-white">
-              Contact Seller
+            <button
+               onClick={handleContactSeller}
+               disabled={loadingContact}
+               className="px-6 py-4 cursor-pointer active:scale-90 transition-transform bg-base rounded-[20.01px] text-white"
+              >
+              {loadingContact ? "Connecting..." : "Contact Seller"}
             </button>
-            <button className="px-6 py-4 cursor-pointer active:scale-90 transition-transform border-base border-1 rounded-[20.01px] text-base">
+
+            {/*<button className="px-6 py-4 cursor-pointer active:scale-90 transition-transform border-base border-1 rounded-[20.01px] text-base">
               Add to Cart
-            </button>
+            </button>*/}
           </div>
         </div>
       </div>
@@ -396,31 +470,6 @@ const SingleProductBody = () => {
         </div>
       </div>
 
-      <div className="space-y-3">
-        <h2 className="text-base text-[13.34px] font-medium">You want to resell this product and make profit?</h2>
-        <p className="font-light">
-          To start reselling this product, simply click the button below to generate your unique reseller link. This
-          personalized link will track all your sales for this specific product. 💰 Commission Details:You will earn a
-          reseller commission of ₦10,000 every time someone purchases this product using your unique link. Take Action
-          Now!Click the button below and start earning today!
-        </p>
-        <div>
-          <h3 className="text-lg">💰Commission Details:</h3>
-          <p className="font-light">
-            You will earn a reseller commission of ₦10,000 every time someone purchases this product using your unique
-            link.
-          </p>
-        </div>
-        <div className="flex justify-between flex-wrap gap-2">
-          <div>
-            <h3 className="text-lg">Take Action Now!</h3>
-            <p className="font-light">Click the button to start earning today.</p>
-          </div>
-          <button className="px-6 py-4 cursor-pointer active:scale-90 transition-transform bg-base rounded-[20.01px] text-white">
-            Generate Reseller Link
-          </button>
-        </div>
-      </div>
     </div>
   );
 };
