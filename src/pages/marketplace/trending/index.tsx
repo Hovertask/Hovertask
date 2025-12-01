@@ -2,11 +2,13 @@ import { BsArrowLeft } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import BestDealServices from "../BestDealServices";
 import ProductsSection from "../components/ProductsSection";
-import { products } from "../components/Market";
+import type { NormalizedProduct } from "../../../types/NormalizedProduct";
 import BannersCarousel from "../components/BannersCarousel";
 
 const Trending = () => {
     const location = useLocation();
+    const { products, loading }: { products: NormalizedProduct[]; loading: boolean } = { products: [], loading: false }; // Placeholder for products data and loading state
+   
 
     return (
         <>
@@ -31,7 +33,7 @@ const Trending = () => {
             <section>
                 <img src="/assets/images/banner.png" alt="Banner" />
             </section>
-            <BestDealServices />
+            <BestDealServices products={products} loading={loading}/>
             <BannersCarousel />
         </>
     );
