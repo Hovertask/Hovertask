@@ -6,6 +6,7 @@ import { GoEye, GoLocation } from "react-icons/go";
 import { IoHeartOutline } from "react-icons/io5";
 import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 /** ---------------------------------------------------------
  * PRODUCT CACHE (Lightweight + Stale-While-Revalidate)
@@ -83,37 +84,65 @@ const SingleProductBody = () => {
   /** ---------------------------------------------------------
    * CONTACT SELLER — FULLY OPTIMIZED
    * --------------------------------------------------------*/
-  const handleContactSeller = async () => {
-    try {
-      if (abortContactRef.current) abortContactRef.current.abort();
-
-      const controller = new AbortController();
-      abortContactRef.current = controller;
-      setLoadingContact(true);
-
-      const response = await fetch(
-        `https://backend.hovertask.com/api/landing-page-track-conversion/${product?.id}?reseller=${resellerCodeFromURL ?? ""}`,
-        {
-          method: "GET",
-          credentials: "include",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          signal: controller.signal,
-        }
-      );
-
-      if (!response.ok) throw new Error("Failed to track conversion");
-
-      const data = await response.json();
-
-      if (data?.whatsapp_url) {
-        window.location.href = data.whatsapp_url; // auto-redirect
-      }
-    } catch (err: any) {
-      if (err.name !== "AbortError") console.error("Contact seller error:", err);
-    } finally {
-      setLoadingContact(false);
+ const handleContactSeller = async () => {
+  try {
+    if (!product?.id) {
+      toast.error("Product not found.");
+      return;
     }
-  };
+
+    if (abortContactRef.current) abortContactRef.current.abort();
+
+    const controller = new AbortController();
+    abortContactRef.current = controller;
+    setLoadingContact(true);
+
+    const reseller = resellerCodeFromURL?.trim() || "";
+
+    const res = await fetch(
+      `https://backend.hovertask.com/api/landing-page-track-conversion/${product.id}?reseller=${encodeURIComponent(reseller)}`,
+      {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        signal: controller.signal,
+      }
+    );
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      // Avoid showing backend error text → secure
+      toast.error("Unable to contact seller. Please try again.");
+
+      console.error("Contact seller backend error:", data);
+      return;
+    }
+
+    // SUCCESS
+    if (data?.whatsapp_url) {
+      toast.success("Opening chat with seller...");
+      window.location.href = data.whatsapp_url;
+      return;
+    }
+
+    // UNKNOWN SUCCESS RESPONSE
+    toast.error("Unexpected response. Try again later.");
+    console.warn("Unexpected backend response:", data);
+
+  } catch (err: any) {
+    if (err.name === "AbortError") return;
+
+    toast.error("Network error. Please try again.");
+    console.error("Contact seller fetch error:", err);
+  } finally {
+    setLoadingContact(false);
+  }
+};
+
 
   /** ---------------------------------------------------------
    * PRODUCT FETCH + SWR CACHING
