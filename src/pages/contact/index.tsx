@@ -1,7 +1,7 @@
-import { PiNavigationArrow } from "react-icons/pi";
+//import { PiNavigationArrow } from "react-icons/pi";
 import { FaYoutube, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { CgMail } from "react-icons/cg";
-import { BiPhone } from "react-icons/bi";
+//import { BiPhone } from "react-icons/bi";
 
 const ContactUs = () => {
     return (
@@ -38,19 +38,19 @@ const ContactForm = () => {
                 {/* Left Section - Contact Info */}
                 <div className="w-1/2 max-md:w-full bg-[#F5F7FF] p-8 space-y-6">
                     <div className="space-y-4">
-                        <div className="flex items-center space-x-4">
+                        {/*<div className="flex items-center space-x-4">
                             <BiPhone className="text-base w-6 h-6" />
                             <div>
-                                <p className="font-semibold text-base">Phone Number</p>
+                                <p className="font-semibold text-base">Email</p>
                                 <p>+234-XXX-XXX-XXXX</p>
                             </div>
-                        </div>
+                        </div>*/}
 
                         <div className="flex items-center space-x-4">
                             <CgMail className="text-base w-6 h-6" />
                             <div>
                                 <p className="font-semibold text-base">Email</p>
-                                <p>support@hovertask.com</p>
+                                <p>hovertask@gmail.com</p>
                             </div>
                         </div>
 
@@ -61,20 +61,20 @@ const ContactForm = () => {
                                 className="w-8 h-8 object-contain"
                             />
                             <div>
-                                <p className="font-semibold text-base">WhatsApp Support</p>
-                                <a href="#" className="text-blue-500 hover:underline">
-                                    Click here to chat
+                                <p className="font-semibold text-base">Forum</p>
+                                <a href="https://chat.whatsapp.com/FQ9p0JMv6BY2wtevK2htVu" className="text-blue-500 hover:underline">
+                                    Join our Forum
                                 </a>
                             </div>
                         </div>
 
-                        <div className="flex items-start space-x-4">
+                        {/*<div className="flex items-start space-x-4">
                             <PiNavigationArrow className="text-base w-6 h-6 mt-1" />
                             <div>
                                 <p className="font-semibold text-base">Address</p>
                                 <p>Hovertask Headquarters, 123 Business Lane, Lagos, Nigeria</p>
                             </div>
-                        </div>
+                        </div>*/}
                     </div>
                 </div>
 

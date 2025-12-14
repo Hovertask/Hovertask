@@ -35,7 +35,7 @@ const EarnsphereAccountForm = ({
 						<BsArrowLeft size={24} />
 					</button>
 					<h2 className="text-2xl font-semibold text-gray-800">
-						Create Earnspere Account
+						Create Hovertask Account
 					</h2>
 				</div>
 				<p className="text-gray-600 mt-2">
